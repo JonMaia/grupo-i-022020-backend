@@ -40,7 +40,7 @@ public class Admin extends User{
 
 	public void finishCollection(Project project) {
 		if(this.compledCollection(project)) {
-			project.setState("closed");
+			project.closedProject();
 		}
 	}
 

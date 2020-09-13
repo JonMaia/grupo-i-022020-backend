@@ -40,4 +40,9 @@ public class Project {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public void closedProject() {
+		// TODO Auto-generated method stub
+		
+	}
 }
