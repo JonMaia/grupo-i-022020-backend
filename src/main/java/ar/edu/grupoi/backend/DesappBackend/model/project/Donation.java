@@ -65,9 +65,9 @@ public class Donation {
 	}
 
 	public void calculatePointsEarned() {
-		Integer cash = bonusCash();
-		Integer inhabitants = bonusInhabitants();
-		this.points += cash + inhabitants;
+		Integer money = this.bonusMoney();
+		Integer inhabitants = this.bonusInhabitants();
+		this.points += money + inhabitants;
 	}
 
 	private Integer bonusInhabitants() {
@@ -77,7 +77,7 @@ public class Donation {
 		return 0;
 	}
 
-	private Integer bonusCash() {
+	private Integer bonusMoney() {
 		if(this.amount >= 1000) {
 			return this.amount;
 		}

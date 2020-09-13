@@ -20,7 +20,7 @@ public class DonationTest {
 		
 		when(location.getPopulation()).thenReturn(3000);
 		when(project.getLocation()).thenReturn(location);
-		when(project.getNombre()).thenReturn("project");
+		when(project.getName()).thenReturn("project");
 		
 		aDonation = new Donation(LocalDate.now(), 1000, project, "cris", "donation");
 	}
@@ -31,7 +31,7 @@ public class DonationTest {
 		assertEquals(aDonation.getAmount(), 1000);
 		assertEquals(aDonation.getNickname(), "cris");
 		assertEquals(aDonation.getComment(), "donation");
-		assertEquals(aDonation.getProject().getNombre(),"project");
+		assertEquals(aDonation.getProject().getName(),"project");
 	}
 	
 	@Test
@@ -55,9 +55,9 @@ public class DonationTest {
 	@Test
 	void WhenADonotionSetProjectShouldGetProjectUpdatedValuesMatch() {
 		Project newProject = mock(Project.class);
-		when(newProject.getNombre()).thenReturn("instalation");
+		when(newProject.getName()).thenReturn("instalation");
 		aDonation.setProject(newProject);
-		assertEquals(aDonation.getProject().getNombre(), "instalation");
+		assertEquals(aDonation.getProject().getName(), "instalation");
 	}
 	
 	@Test
