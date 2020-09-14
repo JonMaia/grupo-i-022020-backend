@@ -9,4 +9,9 @@ public class Location {
 		return null;
 	}
 
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

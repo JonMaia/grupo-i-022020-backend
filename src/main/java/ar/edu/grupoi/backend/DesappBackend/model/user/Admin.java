@@ -1,5 +1,8 @@
 package ar.edu.grupoi.backend.DesappBackend.model.user;
 
+import java.time.LocalDate;
+
+import ar.edu.grupoi.backend.DesappBackend.model.project.Location;
 import ar.edu.grupoi.backend.DesappBackend.model.project.Project;
 
 public class Admin extends User{
@@ -48,7 +51,7 @@ public class Admin extends User{
 		return this.requeridPercentage(project) >= project.getCumulativePercentage();
 	}
 
-	private float requeridPercentage(Project project) {
+	private double requeridPercentage(Project project) {
 		return (project.getCollection()*100) / project.moneyRequerid();
 	}
 	
@@ -68,5 +71,9 @@ public class Admin extends User{
 				+ "Thanks to your donation." 
 				+ "The Team Admin."
 				);
+	}
+
+	public Project createProject(String name, double minPercentage, LocalDate endDate, Location location, int factor) {
+		return new Project(name, minPercentage, endDate, location, factor);
 	}
 }
