@@ -1,9 +1,9 @@
-package ar.edu.grupoi.backend.DesappBackend.model.project;
+package ar.edu.grupoi.backend.desappbackend.model.project;
 
 import java.time.LocalDate;
 import java.util.List;
 
-import ar.edu.grupoi.backend.DesappBackend.model.user.Donor;
+import ar.edu.grupoi.backend.desappbackend.model.user.Donor;
 
 public class Project {
 

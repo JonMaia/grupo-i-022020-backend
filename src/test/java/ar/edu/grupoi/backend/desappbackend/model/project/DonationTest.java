@@ -1,4 +1,4 @@
-package ar.edu.grupoi.backend.DesappBackend.model.project;
+package ar.edu.grupoi.backend.desappbackend.model.project;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
@@ -42,7 +42,7 @@ public class DonationTest {
 	
 	@Test
 	void WhenADonotionSetNicknameShouldGetNicknameUpdatedValuesMatch() {
-		aDonation.setNickname("nick");;
+		aDonation.setNickname("nick");
 		assertEquals(aDonation.getNickname(), "nick");
 	}
 

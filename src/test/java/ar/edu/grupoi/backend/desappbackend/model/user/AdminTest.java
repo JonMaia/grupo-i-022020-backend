@@ -1,4 +1,4 @@
-package ar.edu.grupoi.backend.DesappBackend.model.user;
+package ar.edu.grupoi.backend.desappbackend.model.user;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
@@ -10,8 +10,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import ar.edu.grupoi.backend.DesappBackend.model.project.Location;
-import ar.edu.grupoi.backend.DesappBackend.model.project.Project;
+import ar.edu.grupoi.backend.desappbackend.model.project.Location;
+import ar.edu.grupoi.backend.desappbackend.model.project.Project;
 
 public class AdminTest {
 

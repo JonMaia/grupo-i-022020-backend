@@ -1,9 +1,9 @@
-package ar.edu.grupoi.backend.DesappBackend.model.user;
+package ar.edu.grupoi.backend.desappbackend.model.user;
 
 import java.time.LocalDate;
 
-import ar.edu.grupoi.backend.DesappBackend.model.project.Location;
-import ar.edu.grupoi.backend.DesappBackend.model.project.Project;
+import ar.edu.grupoi.backend.desappbackend.model.project.Location;
+import ar.edu.grupoi.backend.desappbackend.model.project.Project;
 
 public class Admin extends User{
 

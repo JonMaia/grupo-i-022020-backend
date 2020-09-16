@@ -1,4 +1,4 @@
-package ar.edu.grupoi.backend.DesappBackend.model.user;
+package ar.edu.grupoi.backend.desappbackend.model.user;
 
 public abstract class User {
 	

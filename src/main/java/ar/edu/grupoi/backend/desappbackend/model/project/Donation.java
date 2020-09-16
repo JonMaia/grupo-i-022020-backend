@@ -1,4 +1,4 @@
-package ar.edu.grupoi.backend.DesappBackend.model.project;
+package ar.edu.grupoi.backend.desappbackend.model.project;
 
 import java.time.LocalDate;
 

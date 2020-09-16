@@ -1,11 +1,11 @@
-package ar.edu.grupoi.backend.DesappBackend.model.user;
+package ar.edu.grupoi.backend.desappbackend.model.user;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import ar.edu.grupoi.backend.DesappBackend.model.project.Donation;
-import ar.edu.grupoi.backend.DesappBackend.model.project.Project;
+import ar.edu.grupoi.backend.desappbackend.model.project.Donation;
+import ar.edu.grupoi.backend.desappbackend.model.project.Project;
 
 public class Donor extends User{
 
