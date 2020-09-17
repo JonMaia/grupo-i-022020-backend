@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Donation {
 	
-	private LocalDate date;
+	private final LocalDate date;
 	private Integer amount;
 	private Project project;
 	private String nickname;
@@ -52,10 +52,6 @@ public class Donation {
 		return points;
 	}
 
-	public void setPoints(Integer points) {
-		this.points = points;
-	}
-
 	public String getComment() {
 		return comment;
 	}
@@ -71,17 +67,11 @@ public class Donation {
 	}
 
 	private Integer bonusInhabitants() {
-		if(this.project.getLocation().getPopulation() < 2000) {
-			return this.amount * 2;
-		}
-		return 0;
+		return this.project.getLocation().getPopulation() < 2000 ? this.amount * 2 : 0;
 	}
 
 	private Integer bonusMoney() {
-		if(this.amount >= 1000) {
-			return this.amount;
-		}
-		return 0;
+		return this.amount >= 1000 ? this.amount : 0;
 	}
 	
 }

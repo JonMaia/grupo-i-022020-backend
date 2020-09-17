@@ -64,13 +64,13 @@ public class DonorTest {
 		when(location.getPopulation()).thenReturn(3000);
 		when(project.getLocation()).thenReturn(location);
 		
-		Project newProject = mock(Project.class);
-		Location newLocation = mock(Location.class);
-		when(newLocation.getPopulation()).thenReturn(3000);
-		when(newProject.getLocation()).thenReturn(location);
+		Project otherProject = mock(Project.class);
+		Location otherLocation = mock(Location.class);
+		when(otherLocation.getPopulation()).thenReturn(3000);
+		when(otherProject.getLocation()).thenReturn(otherLocation);
 		
-		aDonor.donar(project, 1000, "cris", "first donation");
-		aDonor.donar(newProject, 1000, "cris", "second donation");
+		aDonor.donate(project, 1000, "cris", "first donation");
+		aDonor.donate(otherProject, 1000, "cris", "second donation");
 		
 		assertEquals(aDonor.accumulatedPoints(), 2500);
 	}

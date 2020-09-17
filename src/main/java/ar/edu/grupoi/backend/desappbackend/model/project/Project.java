@@ -2,7 +2,6 @@ package ar.edu.grupoi.backend.desappbackend.model.project;
 
 import java.time.LocalDate;
 import java.util.List;
-
 import ar.edu.grupoi.backend.desappbackend.model.user.Donor;
 
 public class Project {
@@ -31,7 +30,7 @@ public class Project {
 		return 0;
 	}
 
-	public int moneyRequerid() {
+	public float moneyRequerid() {
 		// TODO Auto-generated method stub
 		return 0;
 	}

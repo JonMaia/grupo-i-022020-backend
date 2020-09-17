@@ -12,11 +12,11 @@ public abstract class User {
 		this.password = password;
 	}
 
-	public abstract String getName();
-	public abstract void setName(String name);
-	public abstract String getMail();
-	public abstract void setMail(String mail);
-	public abstract String getPassword();
-	public abstract void setPassword(String password);
+	public String getName() { return this.name; };
+	public void setName(String name) { this.name = name; };
+	public String getMail() { return this.mail; };
+	public void setMail(String mail) { this.mail = mail; };
+	public String getPassword() { return this.password; };
+	public void setPassword(String password) { this.password = password; };
 	 	
 }

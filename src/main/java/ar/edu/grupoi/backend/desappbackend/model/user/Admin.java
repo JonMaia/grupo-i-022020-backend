@@ -1,44 +1,13 @@
 package ar.edu.grupoi.backend.desappbackend.model.user;
 
 import java.time.LocalDate;
-
 import ar.edu.grupoi.backend.desappbackend.model.project.Location;
 import ar.edu.grupoi.backend.desappbackend.model.project.Project;
 
-public class Admin extends User{
+public class Admin extends User {
 
 	public Admin(String name, String mail, String password) {
 		super(name, mail, password);
-	}
-
-	@Override
-	public String getName() {
-		return this.name;
-	}
-
-	@Override
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	@Override
-	public String getMail() {
-		return this.mail;
-	}
-
-	@Override
-	public void setMail(String mail) {
-		this.mail = mail;
-	}
-
-	@Override
-	public String getPassword() {
-		return this.password;
-	}
-
-	@Override
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public void finishCollection(Project project) {
@@ -56,9 +25,7 @@ public class Admin extends User{
 	}
 	
 	public void notifyNews(Project project) {
-		project.getDonors().forEach((donor) -> {
-			this.sendNews(donor, project);
-		});
+		project.getDonors().forEach((donor) -> this.sendNews(donor, project));
 	}
 
 	private void sendNews(Donor donor, Project project) {
