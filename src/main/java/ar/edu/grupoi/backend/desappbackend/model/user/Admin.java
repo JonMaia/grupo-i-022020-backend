@@ -21,7 +21,7 @@ public class Admin extends User {
 	}
 
 	private double requeridPercentage(Project project) {
-		return (project.getCollection()*100) / project.moneyRequerid();
+		return (project.getCollection()*100) / project.moneyRequired();
 	}
 	
 	public void notifyNews(Project project) {
@@ -40,7 +40,7 @@ public class Admin extends User {
 				);
 	}
 
-	public Project createProject(String name, double minPercentage, LocalDate endDate, Location location, int factor) {
-		return new Project(name, minPercentage, endDate, location, factor);
+	public Project createProject(String name, double minPercentage, LocalDate endDate, Location location, Double factor) {
+		return new Project(name, endDate, location, minPercentage, factor);
 	}
 }

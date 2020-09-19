@@ -34,13 +34,13 @@ public class AdminTest {
 		 Location location = mock(Location.class);
 		 when(location.getName()).thenReturn("Quilmes");
 		 
-		 Project newProject = Mockito.spy(aAdmin.createProject("project1", 55.2, LocalDate.of(2020, 9, 20), location, 1000));
+		 Project newProject = Mockito.spy(aAdmin.createProject("project1", 55.2, LocalDate.of(2020, 9, 20), location, (double) 1000));
 		 
 		 when(newProject.getName()).thenReturn("project1");
 		 when(newProject.getMinPercentage()).thenReturn(55.2);
 		 when(newProject.getEndDate()).thenReturn(LocalDate.of(2020, 9, 20));
 		 when(newProject.getLocation()).thenReturn(location);
-		 when(newProject.getFactor()).thenReturn(1000);
+		 when(newProject.getFactor()).thenReturn((double) 1000);
 		 
 		 
 		 assertEquals(newProject.getName(), "project1");
