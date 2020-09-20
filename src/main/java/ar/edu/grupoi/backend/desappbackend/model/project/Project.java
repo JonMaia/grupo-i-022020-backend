@@ -6,7 +6,7 @@ import ar.edu.grupoi.backend.desappbackend.model.user.Donor;
 
 public class Project {
 
-	private final String name;
+	private final String name; // El nombre del proyecto es único en el sistema.
 	private double minPercentage;
 	private double percentage = 0;
 	private double collection = 0;

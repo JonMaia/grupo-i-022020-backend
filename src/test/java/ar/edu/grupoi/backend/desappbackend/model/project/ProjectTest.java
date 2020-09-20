@@ -15,10 +15,12 @@ public class ProjectTest {
     private Project aProject;
     private Location location;
     private LocalDate aInitialDate;
+    private System system;
 
     @BeforeEach
     void setUp() {
-        location = mock(Location.class);
+        system    = new System(null);
+        location  = mock(Location.class);
         aProject  = new Project("Avellaneda con Internet", LocalDate.of(2020,11,23),
                                 location, 50.0, null);
         aInitialDate = LocalDate.now();
@@ -77,5 +79,11 @@ public class ProjectTest {
     void when1000IsDonatedToAProjectWith0CollectionItUpdatesItsCollectionBy1000() {
         aProject.updateCollection(1000);
         assertEquals(aProject.getCollection(), 1000);
+    }
+
+    @Test
+    void whenAProjectIsCreatedItIsAddedToTheSystem() {
+        system.addProject(aProject);
+        assertEquals(system.projects.size(), 1);
     }
 }

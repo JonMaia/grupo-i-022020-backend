@@ -9,10 +9,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class LocationTest {
 
     private Location location;
+    private System system;
 
     @BeforeEach
     void setUp() {
         location = new Location("Avellaneda", "Buenos Aires", 342677, true);
+        system   = new System(null);
     }
 
     @Test
@@ -21,5 +23,11 @@ public class LocationTest {
         assertEquals(location.getProvince(), "Buenos Aires");
         assertEquals(location.getPopulation(), 342677);
         assertTrue(location.getState());
+    }
+
+    @Test
+    void whenALocationIsCreatedItIsAddedToTheSystem() {
+        system.addLocation(location);
+        assertEquals(system.locations.size(), 1);
     }
 }
