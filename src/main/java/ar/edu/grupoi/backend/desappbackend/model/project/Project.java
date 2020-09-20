@@ -1,8 +1,6 @@
 package ar.edu.grupoi.backend.desappbackend.model.project;
 
 import java.time.LocalDate;
-import java.util.List;
-import ar.edu.grupoi.backend.desappbackend.model.user.Donor;
 
 public class Project {
 
@@ -39,12 +37,6 @@ public class Project {
 	}
 
 	public double moneyRequired() { return location.getPopulation() * factor; }
-
-	public List<Donor> getDonors() {
-		// Pasarlo a System
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	public boolean getActive() { return active; }
 

@@ -1,6 +1,8 @@
 package ar.edu.grupoi.backend.desappbackend.model.user;
 
 import java.time.LocalDate;
+import java.util.List;
+
 import ar.edu.grupoi.backend.desappbackend.model.project.Location;
 import ar.edu.grupoi.backend.desappbackend.model.project.Project;
 
@@ -24,8 +26,10 @@ public class Admin extends User {
 		return (project.getCollection()*100) / project.moneyRequired();
 	}
 	
-	public void notifyNews(Project project) {
-		project.getDonors().forEach((donor) -> this.sendNews(donor, project));
+	public void notifyNews(Project project, List<Donor> donors) {
+		for (Donor donor : donors) {
+			sendNews(donor, project);
+		}
 	}
 
 	private void sendNews(Donor donor, Project project) {

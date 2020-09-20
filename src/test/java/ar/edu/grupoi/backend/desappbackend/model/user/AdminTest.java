@@ -1,6 +1,8 @@
 package ar.edu.grupoi.backend.desappbackend.model.user;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -54,12 +56,62 @@ public class AdminTest {
 	 }
 	 
 	 @Test
-	 void whenAAdminCreateProjectItIsAddedToTheSystem() {
+	 void whenAdminCreateProjectItIsAddedToTheSystem() {
 		 Location location = mock(Location.class);
 		 Project newProject = Mockito.spy(aAdmin.createProject("project1", 55.2, LocalDate.of(2020, 9, 20), location, (double) 1000));
 		 
 		 system.addProject(newProject);
 		 
 		 assertEquals(system.projects.size(), 1);
+	 }
+	 
+	 @Test
+	 void whenAdminFinishCollectionOfProjectNotFinishThisIsActive() {
+		 Location location = mock(Location.class);
+		 Project newProject = Mockito.spy(aAdmin.createProject("project1", 55.2, LocalDate.of(2020, 9, 20), location, (double) 1000));
+		 
+		 aAdmin.finishCollection(newProject);
+		 assertTrue(newProject.getActive());
+	 }
+	 
+	 @Test
+	 void whenAdminFinishCollectionOfProjectFinishThisIsClose() {
+		 Donor aDonor = mock(Donor.class);
+		 Donor otherDonor = mock(Donor.class);
+		 Location location = mock(Location.class);
+		 when(location.getPopulation()).thenReturn(1000);
+		 Project newProject = Mockito.spy(aAdmin.createProject("project1", 55.2, LocalDate.of(2020, 9, 20), location, (double) 1000));
+		 
+		 when(aDonor.getNickname()).thenReturn("cris");
+		 when(aDonor.getNickname()).thenReturn("nick");
+		 
+		 system.donate(aDonor, newProject, 500000, "first donation");
+         system.donate(otherDonor, newProject, 600000, "second donation");
+		 
+         aAdmin.finishCollection(newProject);
+		 assertFalse(newProject.getActive());
+	 }
+	 
+	 @Test
+	 void whenAdminFinishCollectionOfProjectFinishThisNotifyNews() {
+		 Donor aDonor = new Donor("cristian", "cris@mail.com", "123", "cris");
+		 Donor otherDonor = new Donor("Nico", "nick@mail.com", "nick123", "nick");
+		 Location location = new Location("Avellaneda", "Buenos Aires", 342677, true);
+		 
+		 Project project = new Project("Avellaneda con Internet", LocalDate.of(2020,11,23), location, 50.0, null);
+		 
+		 system.addDonor(aDonor);
+		 system.addLocation(location);
+		 system.addProject(project);
+		 system.donate(aDonor, project, 500000, "first donation");
+		 system.donate(otherDonor, project, 600000, "");
+		 
+		 assertTrue(system.projects.get(0).getActive());
+		 
+		 system.finishCollection(project);
+		 system.notiftNews(project);
+		 
+		 assertFalse(system.projects.get(0).getActive());
+		  		 
 	 }
 }

@@ -5,9 +5,9 @@ import ar.edu.grupoi.backend.desappbackend.model.user.Donor;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 public class System {
@@ -37,32 +37,68 @@ public class System {
     public Admin getAdmin() { return admin; }
 
 	public Integer accumulatedPoints(Donor aDonor) {
-		List<Donation> donationsDonor = donationOfDonor(aDonor);
+		ArrayList<Donation> donationsDonor = donationOfDonor(aDonor);
 		return totalDonationsMoth(donationsDonor) + totalPointsDonations(donationsDonor);
 	}
 
-	private int totalPointsDonations(List<Donation> donationsDonor) {
+	private int totalPointsDonations(ArrayList<Donation> donationsDonor) {
 		return donationsDonor.stream()
-				.mapToInt((donation) -> donation.getPoints())
+				.mapToInt(donation -> donation.getPoints())
 				.sum();
 	}
 
-	private int totalDonationsMoth(List<Donation> donationsDonor) {
+	private int totalDonationsMoth(ArrayList<Donation> donationsDonor) {
 		int totalDonationsMoth = (int) donationsDonor.stream()
-				.filter((donation) -> donation.getDate().getMonth() == LocalDate.now().getMonth())
+				.filter(donation -> donation.getDate().getMonth() == LocalDate.now().getMonth())
 				.count();
 		return totalDonationsMoth >= 2 ? 500 : 0;
 	}
 	
-	private List<Donation> donationOfDonor(Donor aDonor) {
+	private ArrayList<Donation> donationOfDonor(Donor aDonor) {
 		return donations.stream()
-				.filter((donation) -> donation.getNickname() == aDonor.getNickname())
-				.collect(Collectors.toList());
+				.filter(donation -> donation.getNickname() == aDonor.getNickname())
+				.collect(Collectors
+		        .toCollection(ArrayList::new));
 	}
 
 	public void donate(Donor aDonor, Project project, Integer amount, String comment) {
 		Donation newDonation = aDonor.donate(project, amount, aDonor.getNickname(), comment);
 		addDonation(newDonation);
 	}
+
+	public void finishCollection(Project project) {
+		admin.finishCollection(project);
+	}
+
+	public void notiftNews(Project project) {
+		ArrayList<Donor> donorsproject = findDonorsProject(project);
+		admin.notifyNews(project, donorsproject);
+	}
+
+	private ArrayList<Donor> findDonorsProject(Project project) {
+		ArrayList<String> nicknames = findDonorsNickname(project);
+		return nicknames.stream()
+				.map(apodo -> findDonorNickname(apodo))
+				.collect(Collectors
+                .toCollection(ArrayList::new)); 
+	}
 	
+	private ArrayList<String> findDonorsNickname(Project project) {
+		Stream<Donation> donationsProject = findDonationProject(project.getName());
+		return donationsProject.map(donation -> donation.getNickname())
+				.collect(Collectors
+                .toCollection(ArrayList::new));
+	}
+
+	private  Stream<Donation> findDonationProject(String name) {
+		return donations.stream()
+				.filter(donation -> donation.getNickname() == name);
+	}
+
+	private Donor findDonorNickname(String apodo) {
+		return donors.stream()
+				.filter(donor -> donor.getNickname() == apodo)
+				.collect(Collectors.toList()).get(0);
+	}
+
 }
