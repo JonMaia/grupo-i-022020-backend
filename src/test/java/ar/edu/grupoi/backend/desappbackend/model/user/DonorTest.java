@@ -9,15 +9,18 @@ import org.junit.jupiter.api.Test;
 
 import ar.edu.grupoi.backend.desappbackend.model.project.Location;
 import ar.edu.grupoi.backend.desappbackend.model.project.Project;
+import ar.edu.grupoi.backend.desappbackend.model.project.System;
 
 
 public class DonorTest {
 
 	private Donor aDonor;
+	private System system;
 	
 	 @BeforeEach
 	 void setUp() {
 		aDonor = new Donor("Cristian", "mail@gmail.com", "pas1234", "Cris");
+		system = new System(null);
 	 }
 	
 	@Test
@@ -54,7 +57,7 @@ public class DonorTest {
 	
 	@Test
 	void whenADonorWithEmpltyDonationsQuestionAccumulatedPointsShould0Points() {
-		assertEquals(aDonor.accumulatedPoints(), 0);
+		assertEquals(system.accumulatedPoints(aDonor), 0);
 	}
 	
 	@Test
@@ -69,9 +72,9 @@ public class DonorTest {
 		when(otherLocation.getPopulation()).thenReturn(3000);
 		when(otherProject.getLocation()).thenReturn(otherLocation);
 		
-		aDonor.donate(project, 1000, "cris", "first donation");
-		aDonor.donate(otherProject, 1000, "cris", "second donation");
-		
-		assertEquals(aDonor.accumulatedPoints(), 2500);
+		system.donate(aDonor, project, 1000, "first donation");
+		system.donate(aDonor, otherProject, 1000, "second donation");
+
+		assertEquals(system.accumulatedPoints(aDonor), 2500);
 	}
 }

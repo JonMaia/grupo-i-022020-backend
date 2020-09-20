@@ -12,14 +12,17 @@ import org.mockito.Mockito;
 
 import ar.edu.grupoi.backend.desappbackend.model.project.Location;
 import ar.edu.grupoi.backend.desappbackend.model.project.Project;
+import ar.edu.grupoi.backend.desappbackend.model.project.System;
 
 public class AdminTest {
 
 	private Admin aAdmin;
+	private System system;
 	
 	 @BeforeEach
 	 void setUp() {
 		 aAdmin = new Admin("Cris", "cris@gmail.com", "admiCris123");
+		 system = new System(aAdmin);
 	 }
 	 
 	 @Test
@@ -48,5 +51,15 @@ public class AdminTest {
 		 assertEquals(newProject.getEndDate(), LocalDate.of(2020, 9, 20));
 		 assertEquals(newProject.getLocation(), location);
 		 assertEquals(newProject.getFactor(), 1000);
+	 }
+	 
+	 @Test
+	 void whenAAdminCreateProjectItIsAddedToTheSystem() {
+		 Location location = mock(Location.class);
+		 Project newProject = Mockito.spy(aAdmin.createProject("project1", 55.2, LocalDate.of(2020, 9, 20), location, (double) 1000));
+		 
+		 system.addProject(newProject);
+		 
+		 assertEquals(system.projects.size(), 1);
 	 }
 }
