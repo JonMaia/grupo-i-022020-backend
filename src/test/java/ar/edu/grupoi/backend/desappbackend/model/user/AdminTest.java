@@ -30,7 +30,7 @@ public class AdminTest {
 	 }
 	 
 	 @Test
-	 void WhenAAdminCreateProjectShouldReturnAValidProject() {
+	 void whenAAdminCreateProjectShouldReturnAValidProject() {
 		 Location location = mock(Location.class);
 		 when(location.getName()).thenReturn("Quilmes");
 		 

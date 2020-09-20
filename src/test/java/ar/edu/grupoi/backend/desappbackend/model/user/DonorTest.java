@@ -29,36 +29,36 @@ public class DonorTest {
 	}
 	
 	@Test
-	void WhenADonorSetNameShouldGetNameUpdatedValuesMatch() {
+	void whenADonorSetNameShouldGetNameUpdatedValuesMatch() {
 		aDonor.setName("Nicolas");
 		assertEquals(aDonor.getName(), "Nicolas");
 	}
 	
 	@Test
-	void WhenADonorSetMailShouldGetMailUpdatedValuesMatch() {
+	void whenADonorSetMailShouldGetMailUpdatedValuesMatch() {
 		aDonor.setMail("unMail@gmail.com");
 		assertEquals(aDonor.getMail(), "unMail@gmail.com");
 	}
 	
 	@Test
-	void WhenADonorSetPasswordShouldGetPasswordUpdatedValuesMatch() {
+	void whenADonorSetPasswordShouldGetPasswordUpdatedValuesMatch() {
 		aDonor.setPassword("word12");
 		assertEquals(aDonor.getPassword(), "word12");
 	}
 	
 	@Test
-	void WhenADonorSetNicknameShouldGetNicknameUpdatedValuesMatch() {
+	void whenADonorSetNicknameShouldGetNicknameUpdatedValuesMatch() {
 		aDonor.setNickname("nico");
 		assertEquals(aDonor.getNickname(), "nico");
 	}
 	
 	@Test
-	void WhenADonorWithEmpltyDonationsQuestionAccumulatedPointsShould0Points() {
+	void whenADonorWithEmpltyDonationsQuestionAccumulatedPointsShould0Points() {
 		assertEquals(aDonor.accumulatedPoints(), 0);
 	}
 	
 	@Test
-	void WhenADonorWith2DonationsOf1000TheSameMothQuestionAccumulatedPointsShould2500Points() {
+	void whenADonorWith2DonationsOf1000TheSameMothQuestionAccumulatedPointsShould2500Points() {
 		Project project = mock(Project.class);
 		Location location = mock(Location.class);
 		when(location.getPopulation()).thenReturn(3000);

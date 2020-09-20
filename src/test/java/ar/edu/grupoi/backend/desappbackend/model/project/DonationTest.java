@@ -35,25 +35,25 @@ public class DonationTest {
 	}
 	
 	@Test
-	void WhenADonotionSetAmountShouldGetAmountUpdatedValuesMatch() {
+	void whenADonotionSetAmountShouldGetAmountUpdatedValuesMatch() {
 		aDonation.setAmount(100);
 		assertEquals(aDonation.getAmount(), 100);
 	}
 	
 	@Test
-	void WhenADonotionSetNicknameShouldGetNicknameUpdatedValuesMatch() {
+	void whenADonotionSetNicknameShouldGetNicknameUpdatedValuesMatch() {
 		aDonation.setNickname("nick");
 		assertEquals(aDonation.getNickname(), "nick");
 	}
 
 	@Test
-	void WhenADonotionSetCommentShouldGetCommentUpdatedValuesMatch() {
+	void whenADonotionSetCommentShouldGetCommentUpdatedValuesMatch() {
 		aDonation.setComment("comment");
 		assertEquals(aDonation.getComment(), "comment");
 	}
 
 	@Test
-	void WhenADonotionSetProjectShouldGetProjectUpdatedValuesMatch() {
+	void whenADonotionSetProjectShouldGetProjectUpdatedValuesMatch() {
 		Project newProject = mock(Project.class);
 		when(newProject.getName()).thenReturn("instalation");
 		aDonation.setProject(newProject);
@@ -61,20 +61,20 @@ public class DonationTest {
 	}
 	
 	@Test
-	void WhenADonationOf1000PesosAccumulatedPointsShould1000Points() {
+	void whenADonationOf1000PesosAccumulatedPointsShould1000Points() {
 		aDonation.calculatePointsEarned();
 		assertEquals(aDonation.getPoints(), 1000);
 	}
 	
 	@Test
-	void WhenADonationOf100PesosAccumulatedPointsShould0Points() {
+	void whenADonationOf100PesosAccumulatedPointsShould0Points() {
 		aDonation.setAmount(100);
 		aDonation.calculatePointsEarned();
 		assertEquals(aDonation.getPoints(), 0);
 	}
 	
 	@Test
-	void WhenADonationOf10PesosWithProjectOf1000PopulationAccumulatedPointsShould20Points() {
+	void whenADonationOf10PesosWithProjectOf1000PopulationAccumulatedPointsShould20Points() {
 		Project newProject = mock(Project.class);
 		Location location = mock(Location.class);
 		when(location.getPopulation()).thenReturn(1000);
