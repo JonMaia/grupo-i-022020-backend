@@ -63,4 +63,12 @@ public class Project {
 	public LocalDate getInitialDate() { return initialDate; }
 
 	public double getPercentage() { return percentage; }
+
+	public boolean compledCollection() {
+		return requeridPercentage() >= getCumulativePercentage();
+	}
+
+	private double requeridPercentage() {
+		return (getCollection()*100) / moneyRequired();
+	}
 }

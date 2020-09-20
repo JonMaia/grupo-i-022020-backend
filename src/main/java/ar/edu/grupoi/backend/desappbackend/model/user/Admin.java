@@ -13,17 +13,9 @@ public class Admin extends User {
 	}
 
 	public void finishCollection(Project project) {
-		if(this.compledCollection(project)) {
+		if(project.compledCollection()) {
 			project.closedProject();
 		}
-	}
-
-	private boolean compledCollection(Project project) {
-		return this.requeridPercentage(project) >= project.getCumulativePercentage();
-	}
-
-	private double requeridPercentage(Project project) {
-		return (project.getCollection()*100) / project.moneyRequired();
 	}
 	
 	public void notifyNews(Project project, List<Donor> donors) {
