@@ -54,7 +54,13 @@ public class Project {
 
 	public LocalDate getEndDate() { return endDate;	}
 
-	public void changeEndDate(LocalDate newEndDate) { endDate = newEndDate; }
+	public void changeEndDate(LocalDate newEndDate) {
+		if (newEndDate.isAfter(initialDate) && newEndDate.isAfter(LocalDate.now())) {
+			endDate = newEndDate;
+		} else {
+			throw new IllegalArgumentException("Date used is not allowed, please try another date");
+		}
+	}
 
 	public double getFactor() { return factor; }
 

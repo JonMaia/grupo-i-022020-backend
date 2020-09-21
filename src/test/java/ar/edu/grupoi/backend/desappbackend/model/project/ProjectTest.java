@@ -70,6 +70,15 @@ public class ProjectTest {
     }
 
     @Test
+    void whenAProjectSetNewEndDateBeforeInitialDateShouldViewErrorMessage() {
+        try {
+            aProject.changeEndDate(LocalDate.of(2020,7,11));
+        } catch (IllegalArgumentException e) {
+            assertEquals("Date used is not allowed, please try another date", e.getMessage());
+        }
+    }
+
+    @Test
     void whenAProjectSetNewFactor2000ShouldUpdateFactor() {
         aProject.changeFactor(2000);
         assertEquals(aProject.getFactor(), 2000);
