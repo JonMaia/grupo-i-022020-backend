@@ -101,6 +101,7 @@ public class AdminTest {
 		 Project project = new Project("Avellaneda con Internet", LocalDate.of(2020,11,23), location, 50.0, null);
 		 
 		 system.addDonor(aDonor);
+		 system.addDonor(otherDonor);
 		 system.addLocation(location);
 		 system.addProject(project);
 		 system.donate(aDonor, project, 500000, "first donation");
@@ -114,4 +115,5 @@ public class AdminTest {
 		 assertFalse(system.projects.get(0).getActive());
 		  		 
 	 }
+	 
 }

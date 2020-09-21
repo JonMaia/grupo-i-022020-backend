@@ -88,19 +88,22 @@ public class System {
 	}
 
 	private ArrayList<String> findDonorsNicknameProject(Project project) {
-		Stream<Donation> donationsProject = findDonationProject(project.getName());
+		ArrayList<Donation> donationsProject = findDonationProject(project.getName());
 		return getNicknamesDonations(donationsProject);
 	}
 
-	private ArrayList<String> getNicknamesDonations(Stream<Donation> donationsProject) {
-		return donationsProject.map(donation -> donation.getNickname())
+	private ArrayList<String> getNicknamesDonations(ArrayList<Donation> donationsProject) {
+		return donationsProject.stream()
+				.map(donation -> donation.getNickname())
 				.collect(Collectors
                 .toCollection(ArrayList::new));
 	}
 
-	private  Stream<Donation> findDonationProject(String name) {
+	private  ArrayList<Donation> findDonationProject(String name) {
 		return donations.stream()
-				.filter(donation -> donation.getNickname() == name);
+				.filter(donation -> donation.getNameProject() == name)
+				.collect(Collectors
+		        .toCollection(ArrayList::new));
 	}
 
 	private Donor findDonorNickname(String apodo) {

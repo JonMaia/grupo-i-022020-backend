@@ -73,5 +73,9 @@ public class Donation {
 	private Integer bonusMoney() {
 		return this.amount >= 1000 ? this.amount : 0;
 	}
+
+	public String getNameProject() {
+		return project.getName();
+	}
 	
 }
