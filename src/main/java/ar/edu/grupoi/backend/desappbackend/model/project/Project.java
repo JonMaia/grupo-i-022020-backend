@@ -64,7 +64,13 @@ public class Project {
 
 	public double getFactor() { return factor; }
 
-	public void changeFactor(double newFactor) { factor = newFactor; }
+	public void changeFactor(double newFactor) {
+		if (newFactor <= 0 || newFactor > 100000) {
+			throw new IllegalArgumentException("The factor must be greater than 0 and less than 100000");
+		} else {
+			factor = newFactor;
+		}
+	}
 
 	public LocalDate getInitialDate() { return initialDate; }
 

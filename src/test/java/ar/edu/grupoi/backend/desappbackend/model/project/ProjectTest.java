@@ -85,6 +85,15 @@ public class ProjectTest {
     }
 
     @Test
+    void whenAProjectSetNewFactor0ShouldViewErrorMessage() {
+        try {
+            aProject.changeFactor(0);
+        } catch (IllegalArgumentException e) {
+            assertEquals("The factor must be greater than 0 and less than 100000", e.getMessage());
+        }
+    }
+
+    @Test
     void when1000IsDonatedToAProjectWith0CollectionItUpdatesItsCollectionBy1000() {
         aProject.updateCollection(1000);
         assertEquals(aProject.getCollection(), 1000);
