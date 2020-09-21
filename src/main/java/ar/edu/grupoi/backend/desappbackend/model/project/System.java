@@ -5,9 +5,7 @@ import ar.edu.grupoi.backend.desappbackend.model.user.Donor;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 
 public class System {
@@ -43,7 +41,7 @@ public class System {
 
 	private int totalPointsDonations(ArrayList<Donation> donationsDonor) {
 		return donationsDonor.stream()
-				.mapToInt(donation -> donation.getPoints())
+				.mapToInt(Donation::getPoints)
 				.sum();
 	}
 
@@ -56,7 +54,7 @@ public class System {
 	
 	private ArrayList<Donation> donationOfDonor(Donor aDonor) {
 		return donations.stream()
-				.filter(donation -> donation.getNickname() == aDonor.getNickname())
+				.filter(donation -> donation.getNickname().equals(aDonor.getNickname()))
 				.collect(Collectors
 		        .toCollection(ArrayList::new));
 	}
@@ -82,7 +80,7 @@ public class System {
 	
 	private ArrayList<Donor> findDonorsNickname(ArrayList<String> nicknames) {
 		return nicknames.stream()
-				.map(apodo -> findDonorNickname(apodo))
+				.map(this::findDonorNickname)
 				.collect(Collectors
                 .toCollection(ArrayList::new));
 	}
@@ -94,21 +92,21 @@ public class System {
 
 	private ArrayList<String> getNicknamesDonations(ArrayList<Donation> donationsProject) {
 		return donationsProject.stream()
-				.map(donation -> donation.getNickname())
+				.map(Donation::getNickname)
 				.collect(Collectors
                 .toCollection(ArrayList::new));
 	}
 
 	private  ArrayList<Donation> findDonationProject(String name) {
 		return donations.stream()
-				.filter(donation -> donation.getNameProject() == name)
+				.filter(donation -> donation.getNameProject().equals(name))
 				.collect(Collectors
 		        .toCollection(ArrayList::new));
 	}
 
 	private Donor findDonorNickname(String apodo) {
 		return donors.stream()
-				.filter(donor -> donor.getNickname() == apodo)
+				.filter(donor -> donor.getNickname().equals(apodo))
 				.collect(Collectors.toList()).get(0);
 	}
 
