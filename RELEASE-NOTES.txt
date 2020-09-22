@@ -1,0 +1,21 @@
+====== RELEASE NOTE  ==========
+---------------------------------------------------------------------
+TAG Entrega 1.0
+---------------------------------------------------------------------
+NEW FEATURES:
+* Modelos creados: Location, Project, Donation, System, User, Admin y Donor.
+* Funcionalidad: Se crearon la funcionalidad requerida por el enunciado enfocada en los modelos ya nombrados.
+* Test: Se crearon los test que representan de alguna manera la correcta funcionalidad de los modelos.
+* Codacy: Se integró codacy en el proyecto para contemplar el coverage del mismo.
+* Travis: Se integró Travis para realizar CI del proyecto.
+* Heroku: Se hizo deploy del proyecto.
+* Covertura de test de un 98%
+
+NOTES:
+* Consideraciones: Debido a la ambiguedad de algunos puntos del TP decidimos tomar algunas validaciones.
+    Por ejemplo: El Proyecto debe ser único en el sistema.
+
+KNOWN ISSUES:
+* Funcionalidad: Como solo tenemos model y no base de datos, tomamos la decición
+de agregar una clase que reemplaza la funcionalidad de la base de datos.
+	Por ejemplo: System estan las conexión entre todas las clases (ddbb).
