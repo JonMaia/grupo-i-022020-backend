@@ -41,6 +41,8 @@ public class AdminTest {
 
 		Project newProject = Mockito
 				.spy(aAdmin.createProject("project1", 55.2, LocalDate.of(2020, 9, 20), location, (double) 1000));
+		Project otherProject = Mockito
+				.spy(aAdmin.createProject("project2", 55.2, LocalDate.of(2020, 9, 20), location, (double) 1000));
 
 		when(newProject.getName()).thenReturn("project1");
 		when(newProject.getMinPercentage()).thenReturn(55.2);
@@ -48,11 +50,11 @@ public class AdminTest {
 		when(newProject.getLocation()).thenReturn(location);
 		when(newProject.getFactor()).thenReturn((double) 1000);
 
-		assertEquals(newProject.getName(), "project1");
-		assertEquals(newProject.getMinPercentage(), 55.2);
-		assertEquals(newProject.getEndDate(), LocalDate.of(2020, 9, 20));
-		assertEquals(newProject.getLocation(), location);
-		assertEquals(newProject.getFactor(), 1000);
+		assertEquals(otherProject.getName(), "project2");
+		assertEquals(otherProject.getMinPercentage(), 55.2);
+		assertEquals(otherProject.getEndDate(), LocalDate.of(2020, 9, 20));
+		assertEquals(otherProject.getLocation(), location);
+		assertEquals(otherProject.getFactor(), 1000);
 	}
 
 	@Test

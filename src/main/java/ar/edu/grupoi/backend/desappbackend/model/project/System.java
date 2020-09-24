@@ -64,7 +64,7 @@ public class System {
 	}
 
 	public void donate(Donor aDonor, Project project, Integer amount, String comment) {
-		Donation newDonation = aDonor.donate(project, amount, aDonor.getNickname(), comment);
+		Donation newDonation = aDonor.donate(project, amount, comment);
 		addDonation(newDonation);
 	}
 

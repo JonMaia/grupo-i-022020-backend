@@ -16,10 +16,10 @@ public class Project {
 
 	public Project(String name, LocalDate endDate, Location location, Double minPercentage, Double factor) {
 		this.name          = name;
-		this.minPercentage = minPercentage != null ? minPercentage : 50;
+		this.minPercentage = minPercentage != null && minPercentage >= 50 ? minPercentage : 50;
 		this.endDate       = endDate;
 		this.location      = location;
-		this.factor        = factor != null ? factor : 1000;
+		this.factor        = factor != null && factor > 0 && factor < 100000 ? factor : 1000;
 		this.initialDate   = LocalDate.now();
 	}
 
@@ -81,6 +81,6 @@ public class Project {
 	}
 
 	private double requeridPercentage() {
-		return (getCollection()*100) / moneyRequired();
+		return (getCollection()*minPercentage) / moneyRequired();
 	}
 }

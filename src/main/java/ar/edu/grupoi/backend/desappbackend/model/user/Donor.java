@@ -22,7 +22,7 @@ public class Donor extends User{
 		this.nickname = nickname;
 	}
 
-	public Donation donate(Project project, Integer amount, String nickname, String comment) {
+	public Donation donate(Project project, Integer amount, String comment) {
 		Donation donation = new Donation(LocalDate.now(), amount, project, nickname, comment);
 		donation.calculatePointsEarned();
 		return donation;
