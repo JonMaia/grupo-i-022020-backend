@@ -14,6 +14,7 @@ NEW FEATURES:
 NOTES:
 * Consideraciones: Debido a la ambiguedad de algunos puntos del TP decidimos tomar algunas validaciones.
     Por ejemplo: El Proyecto debe ser único en el sistema.
+* No se implementó lo de enviar un top 10 proyectos y donantes.
 
 KNOWN ISSUES:
 * Funcionalidad: Como solo tenemos model y no base de datos, tomamos la decición
