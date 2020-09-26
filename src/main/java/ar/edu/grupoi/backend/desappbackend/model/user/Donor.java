@@ -2,13 +2,18 @@ package ar.edu.grupoi.backend.desappbackend.model.user;
 
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+
 import ar.edu.grupoi.backend.desappbackend.model.project.Donation;
 import ar.edu.grupoi.backend.desappbackend.model.project.Project;
 
+@Entity
 public class Donor extends User{
 
 	private String nickname;
 
+	public Donor() {}
+	
 	public Donor(String name, String mail, String password, String nickname) {
 		super(name, mail, password);
 		this.nickname = nickname;

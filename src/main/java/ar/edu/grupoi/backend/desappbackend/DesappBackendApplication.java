@@ -1,4 +1,4 @@
-package ar.edu.grupoi.backend.desappbackend.app;
+package ar.edu.grupoi.backend.desappbackend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
