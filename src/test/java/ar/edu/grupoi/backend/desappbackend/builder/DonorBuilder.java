@@ -1,6 +1,6 @@
 package ar.edu.grupoi.backend.desappbackend.builder;
-import com.somospnt.test.builder.AbstractPersistenceBuilder;
 
+import com.somospnt.test.builder.AbstractPersistenceBuilder;
 import ar.edu.grupoi.backend.desappbackend.model.user.Donor;
 
 public class DonorBuilder extends AbstractPersistenceBuilder<Donor>{
@@ -14,7 +14,7 @@ public class DonorBuilder extends AbstractPersistenceBuilder<Donor>{
 		instance.setNickname("cris");
 	}
 
-	public static AbstractPersistenceBuilder<Donor> whitName(String name) {
+	public static DonorBuilder whitName(String name) {
 		DonorBuilder builder = new DonorBuilder();
 		builder.instance.setName(name);
 		return builder;

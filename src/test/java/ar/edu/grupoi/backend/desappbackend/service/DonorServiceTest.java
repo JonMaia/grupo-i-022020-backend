@@ -20,7 +20,7 @@ public class DonorServiceTest extends DesappBackendApplicationTests {
 	
 	@Test
 	public void whenADonorPersistsShouldFindAll1Donor() {
-		Donor aDonor = DonorBuilder.whitName("Nico").build(em);
+		DonorBuilder.whitName("Nico").build(em);
 		
 		List<Donor> donors = donorService.findAll();
 		
@@ -31,7 +31,7 @@ public class DonorServiceTest extends DesappBackendApplicationTests {
 	
 	@Test
 	public void aDonorPersistsShouldValiedWhenGettersValuesMatch() {
-		Donor aDonor = DonorBuilder.whitName("Nico").build(em);
+		DonorBuilder.whitName("Nico").build(em);
 		
 		Donor donor = donorService.login("cris@mail.com");
 		
@@ -43,7 +43,7 @@ public class DonorServiceTest extends DesappBackendApplicationTests {
 	
 	@Test
 	public void aDonorPersistsWithValueDiferentShouldValiedWhenGettersValuesMatch() {
-		Donor aDonor = ((DonorBuilder) DonorBuilder.whitName("Nico")).whitMail("nico@mail.com").whitPassword("nico123").withNickname("Nick").build(em);
+		DonorBuilder.whitName("Nico").whitMail("nico@mail.com").whitPassword("nico123").withNickname("Nick").build(em);
 		
 		Donor donor = donorService.login("nico@mail.com");
 		
