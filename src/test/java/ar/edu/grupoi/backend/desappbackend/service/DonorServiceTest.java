@@ -18,7 +18,7 @@ public class DonorServiceTest extends DesappBackendApplicationTests {
 
 	@Test
 	public void aDonorPersistsShouldValiedWhenGettersValuesMatch() throws ErrorLogin {
-		Donor aDonor = DonorBuilder.whitName("Nico").build(em);
+		DonorBuilder.whitName("Nico").build(em);
 
 		Donor donor = donorService.login("cris@mail.com", "pas123");
 
@@ -30,8 +30,7 @@ public class DonorServiceTest extends DesappBackendApplicationTests {
 
 	@Test
 	public void aDonorPersistsWithValueDiferentShouldValiedWhenGettersValuesMatch() throws ErrorLogin {
-		Donor aDonor = DonorBuilder.whitName("Nico").whitMail("nico@mail.com").whitPassword("nico123")
-				.withNickname("Nick").build(em);
+		DonorBuilder.whitName("Nico").whitMail("nico@mail.com").whitPassword("nico123").withNickname("Nick").build(em);
 
 		Donor donor = donorService.login("nico@mail.com", "nico123");
 
@@ -40,11 +39,10 @@ public class DonorServiceTest extends DesappBackendApplicationTests {
 		assertThat(donor.getPassword()).isEqualTo("nico123");
 		assertThat(donor.getNickname()).isEqualTo("Nick");
 	}
-	
+
 	@Test
 	public void loginADonorWithInvalidMailShouldGetErrorLogin() {
-		Donor aDonor = DonorBuilder.whitName("Nico").whitMail("nico@mail.com").whitPassword("nico123")
-				.withNickname("Nick").build(em);
+		DonorBuilder.whitName("Nico").whitMail("nico@mail.com").whitPassword("nico123").withNickname("Nick").build(em);
 
 		try {
 			donorService.login("crist@mail.com", "pas123");
@@ -52,11 +50,10 @@ public class DonorServiceTest extends DesappBackendApplicationTests {
 			assertThat(e.getMessage()).isEqualTo("Incorrect mail or password");
 		}
 	}
-	
+
 	@Test
 	public void loginADonorWithInvalidPasswordShouldGetErrorLogin() {
-		Donor aDonor = DonorBuilder.whitName("Nico").whitMail("nico@mail.com").whitPassword("nico123")
-				.withNickname("Nick").build(em);
+		DonorBuilder.whitName("Nico").whitMail("nico@mail.com").whitPassword("nico123").withNickname("Nick").build(em);
 
 		try {
 			donorService.login("cris@mail.com", "pas1s23");
@@ -67,8 +64,7 @@ public class DonorServiceTest extends DesappBackendApplicationTests {
 
 	@Test
 	public void aDonorCreateWithValidMailShouldValiedWhenGettersValuesMatch() throws ExistingUser {
-		Donor aDonor = DonorBuilder.whitName("Nico").whitMail("nico@mail.com").whitPassword("nico123")
-				.withNickname("Nick").build(em);
+		DonorBuilder.whitName("Nico").whitMail("nico@mail.com").whitPassword("nico123").withNickname("Nick").build(em);
 
 		Donor donor = new Donor();
 		donor.setName("Jonatan");
@@ -76,7 +72,7 @@ public class DonorServiceTest extends DesappBackendApplicationTests {
 		donor.setPassword("2132132");
 		donor.setNickname("Jony");
 
-		Donor neDonor = donorService.create(donor);
+		donorService.create(donor);
 		assertThat(donor.getName()).isEqualTo("Jonatan");
 		assertThat(donor.getMail()).isEqualTo("jony@mail.com");
 		assertThat(donor.getPassword()).isEqualTo("2132132");
@@ -86,8 +82,7 @@ public class DonorServiceTest extends DesappBackendApplicationTests {
 
 	@Test
 	public void aDonorCreateWithInvalidMailShouldGetErrorMessageExistingUser() {
-		Donor aDonor = DonorBuilder.whitName("Nico").whitMail("nico@mail.com").whitPassword("nico123")
-				.withNickname("Nick").build(em);
+		DonorBuilder.whitName("Nico").whitMail("nico@mail.com").whitPassword("nico123").withNickname("Nick").build(em);
 
 		Donor donor = new Donor();
 		donor.setName("Jonatan");
