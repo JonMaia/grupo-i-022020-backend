@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import ar.edu.grupoi.backend.desappbackend.DesappBackendApplicationTests;
-import ar.edu.grupoi.backend.desappbackend.builder.DonorBuilder;
 import ar.edu.grupoi.backend.desappbackend.model.user.Donor;
 import ar.edu.grupoi.backend.desappbackend.webservice.exception.ErrorLogin;
 import ar.edu.grupoi.backend.desappbackend.webservice.exception.ExistingUser;
@@ -18,32 +17,16 @@ public class DonorServiceTest extends DesappBackendApplicationTests {
 
 	@Test
 	public void aDonorPersistsShouldValiedWhenGettersValuesMatch() throws ErrorLogin {
-		DonorBuilder.whitName("Nico").build(em);
+		Donor donor = donorService.login("cris@mail.com", "cris123");
 
-		Donor donor = donorService.login("cris@mail.com", "pas123");
-
-		assertThat(donor.getName()).isEqualTo("Nico");
+		assertThat(donor.getName()).isEqualTo("Cristian");
 		assertThat(donor.getMail()).isEqualTo("cris@mail.com");
-		assertThat(donor.getPassword()).isEqualTo("pas123");
-		assertThat(donor.getNickname()).isEqualTo("cris");
-	}
-
-	@Test
-	public void aDonorPersistsWithValueDiferentShouldValiedWhenGettersValuesMatch() throws ErrorLogin {
-		DonorBuilder.whitName("Nico").whitMail("nico@mail.com").whitPassword("nico123").withNickname("Nick").build(em);
-
-		Donor donor = donorService.login("nico@mail.com", "nico123");
-
-		assertThat(donor.getName()).isEqualTo("Nico");
-		assertThat(donor.getMail()).isEqualTo("nico@mail.com");
-		assertThat(donor.getPassword()).isEqualTo("nico123");
-		assertThat(donor.getNickname()).isEqualTo("Nick");
+		assertThat(donor.getPassword()).isEqualTo("cris123");
+		assertThat(donor.getNickname()).isEqualTo("Cris");
 	}
 
 	@Test
 	public void loginADonorWithInvalidMailShouldGetErrorLogin() {
-		DonorBuilder.whitName("Nico").whitMail("nico@mail.com").whitPassword("nico123").withNickname("Nick").build(em);
-
 		try {
 			donorService.login("crist@mail.com", "pas123");
 		} catch (ErrorLogin e) {
@@ -53,8 +36,6 @@ public class DonorServiceTest extends DesappBackendApplicationTests {
 
 	@Test
 	public void loginADonorWithInvalidPasswordShouldGetErrorLogin() {
-		DonorBuilder.whitName("Nico").whitMail("nico@mail.com").whitPassword("nico123").withNickname("Nick").build(em);
-
 		try {
 			donorService.login("cris@mail.com", "pas1s23");
 		} catch (ErrorLogin e) {
@@ -64,17 +45,15 @@ public class DonorServiceTest extends DesappBackendApplicationTests {
 
 	@Test
 	public void aDonorCreateWithValidMailShouldValiedWhenGettersValuesMatch() throws ExistingUser {
-		DonorBuilder.whitName("Nico").whitMail("nico@mail.com").whitPassword("nico123").withNickname("Nick").build(em);
-
 		Donor donor = new Donor();
 		donor.setName("Jonatan");
-		donor.setMail("jony@mail.com");
+		donor.setMail("jony@gmail.com");
 		donor.setPassword("2132132");
 		donor.setNickname("Jony");
 
 		donorService.create(donor);
 		assertThat(donor.getName()).isEqualTo("Jonatan");
-		assertThat(donor.getMail()).isEqualTo("jony@mail.com");
+		assertThat(donor.getMail()).isEqualTo("jony@gmail.com");
 		assertThat(donor.getPassword()).isEqualTo("2132132");
 		assertThat(donor.getNickname()).isEqualTo("Jony");
 
@@ -82,13 +61,12 @@ public class DonorServiceTest extends DesappBackendApplicationTests {
 
 	@Test
 	public void aDonorCreateWithInvalidMailShouldGetErrorMessageExistingUser() {
-		DonorBuilder.whitName("Nico").whitMail("nico@mail.com").whitPassword("nico123").withNickname("Nick").build(em);
-
 		Donor donor = new Donor();
 		donor.setName("Jonatan");
 		donor.setMail("jony@gmail.com");
 		donor.setPassword("2132132");
 		donor.setNickname("Jony");
+		
 		try {
 			donorService.create(donor);
 		} catch (ExistingUser e) {
