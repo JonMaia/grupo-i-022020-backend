@@ -25,36 +25,35 @@ public class DesappBackendApplication {
 	}
 
 	@Bean
-	ApplicationRunner applicationRunner(DonorRepository donorRepository, LocationRepository locationRepository, ProjectRepository projectRepository) {
+	ApplicationRunner applicationRunner(DonorRepository donorRepository, LocationRepository locationRepository,
+			ProjectRepository projectRepository) {
 		return args -> {
-			
-			Donor cris = DonorBuilder.whitName("Cristian")
-					.whitMail("cris@mail.com")
-					.whitPassword("cris123")
+
+			Donor cris = DonorBuilder.whitName("Cristian").whitMail("cris@mail.com").whitPassword("cris123")
 					.withNickname("Cris").builder();
-			
-			Donor jony = DonorBuilder.whitName("Jonathan")
-					.whitMail("jony@mail.com")
-					.whitPassword("jony213")
+
+			Donor jony = DonorBuilder.whitName("Jonathan").whitMail("jony@mail.com").whitPassword("jony213")
 					.withNickname("Jony").builder();
-			
-			Location avellaneda = LocationBuilder.withName("Avellaneda")
-					.whitProvince("Buenos Aires")
-					.whitPopulation(342677)
+
+			Location avellaneda = LocationBuilder.withName("Avellaneda").whitProvince("Buenos Aires")
+					.whitPopulation(342677).withState(true).builder();
+
+			Project project = ProjectBuilder.withName("Avellaneda con Internet").withEndDate(LocalDate.of(2020, 11, 23))
+					.withLocation(avellaneda).withFactor(50.0).withInitialDate(LocalDate.now()).builder();
+
+			Location quilmes = LocationBuilder.withName("Quilmes").whitProvince("Buenos Aires").whitPopulation(542677)
 					.withState(true).builder();
-			
-			Project project = ProjectBuilder.withName("Avellaneda con Internet")
-					.withEndDate(LocalDate.of(2020,11,23))
-					.withLocation(avellaneda)
-					.withFactor(50.0)
-					.withInitialDate(LocalDate.now())
-					.builder();
-        
+
+			Project otherProject = ProjectBuilder.withName("Quilmes con Internet")
+					.withEndDate(LocalDate.of(2020, 11, 23)).withLocation(quilmes).withFactor(50.0)
+					.withInitialDate(LocalDate.now()).builder();
+
 			donorRepository.save(cris);
 			donorRepository.save(jony);
 			locationRepository.save(avellaneda);
+			locationRepository.save(quilmes);
 			projectRepository.save(project);
-			
+			projectRepository.save(otherProject);
 		};
 
 	}
