@@ -22,12 +22,12 @@ public interface DonationRepository extends JpaRepository<Donation, Integer>{
 			+"YEAR (d.date)) f "
 			+"WHERE f.COUNT > 1;",*/
 
-	@Query(value = "SELECT COUNT(d.date) FROM donation d "
+	/*@Query(value = "SELECT COUNT(d.date) FROM donation d "
 			+"WHERE d.nickname = ?1 GROUP BY "
 			+"MONTH(d.date), "
 			+"YEAR (d.date)  "
 			+"having COUNT(d.date) > 1;",
             nativeQuery = true)
-	List<Integer> bonusProjects(String nickname);
+	List<Integer> bonusProjects(String nickname);*/
 
 }
