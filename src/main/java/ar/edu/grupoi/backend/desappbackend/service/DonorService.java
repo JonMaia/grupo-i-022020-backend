@@ -78,7 +78,7 @@ public class DonorService {
 	public DtoDonor donorId(Integer id) {
 		Donor donor = donorRepository.findById(id).get();
 		Integer sum = donationRepository.sumPoints(donor.getNickname());
-		Integer bonus = donationRepository.bonusProjects(donor.getNickname()).size();
+		//Integer bonus = donationRepository.bonusProjects(donor.getNickname()).size();
 
 		if (sum == null) {
 			sum = 0;
@@ -90,7 +90,7 @@ public class DonorService {
 		newDonor.setNickname(donor.getNickname());
 		newDonor.setMail(donor.getMail());
 		newDonor.setPassword(donor.getPassword());
-		newDonor.setPoints(sum + bonus * 500);
+		newDonor.setPoints(sum /*+ bonus * 500*/);
 
 		return newDonor;
 	}
