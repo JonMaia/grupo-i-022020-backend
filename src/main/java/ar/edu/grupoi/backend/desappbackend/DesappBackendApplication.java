@@ -50,24 +50,11 @@ public class DesappBackendApplication {
 					.withInitialDate(LocalDate.now())
 					.builder();
         
-			Location quilmes = LocationBuilder.withName("Quilmes")
-					.whitProvince("Buenos Aires")
-					.whitPopulation(542677)
-					.withState(true).builder();
-			
-			Project otherProject = ProjectBuilder.withName("Quilmes con Internet")
-					.withEndDate(LocalDate.of(2020,11,23))
-					.withLocation(quilmes)
-					.withFactor(50.0)
-					.withInitialDate(LocalDate.now())
-					.builder();
-			
 			donorRepository.save(cris);
 			donorRepository.save(jony);
 			locationRepository.save(avellaneda);
-			locationRepository.save(quilmes);
 			projectRepository.save(project);
-			projectRepository.save(otherProject);
+			
 		};
 
 	}
