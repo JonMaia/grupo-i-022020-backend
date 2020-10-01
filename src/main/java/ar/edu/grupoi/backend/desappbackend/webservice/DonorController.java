@@ -7,12 +7,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.edu.grupoi.backend.desappbackend.dto.DtoDonation;
+import ar.edu.grupoi.backend.desappbackend.dto.DtoDonor;
 import ar.edu.grupoi.backend.desappbackend.model.project.Location;
 import ar.edu.grupoi.backend.desappbackend.model.project.Project;
 import ar.edu.grupoi.backend.desappbackend.model.user.Donor;
@@ -60,6 +62,12 @@ public class DonorController {
 		return donorService.donate(dtoDonation);
 	}
 
+	@CrossOrigin
+	@GetMapping("/points/{id}")
+	public DtoDonor donorId(@PathVariable(value= "id") Integer id) {
+		return donorService.donorId(id);
+	}
+	
 	@CrossOrigin
 	@GetMapping("/project")
 	public List<Project> projects() {

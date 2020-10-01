@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.edu.grupoi.backend.desappbackend.dto.DtoDonation;
+import ar.edu.grupoi.backend.desappbackend.dto.DtoDonor;
 import ar.edu.grupoi.backend.desappbackend.model.project.Donation;
 import ar.edu.grupoi.backend.desappbackend.model.project.Location;
 import ar.edu.grupoi.backend.desappbackend.model.project.Project;
@@ -31,7 +32,7 @@ public class DonorService {
 
 	@Autowired
 	private LocationRepository locationRepository;
-	
+
 	public Donor create(Donor donor) throws ExistingUser {
 		Donor donorFind = donorRepository.findByMail(donor.getMail());
 		if (!(donorFind == null)) {
@@ -57,7 +58,7 @@ public class DonorService {
 		Project project = projectRepository.findById(dtoDonation.getIdProject()).get();
 		Donation donation = donor.donate(project, dtoDonation.getAmount(), dtoDonation.getComment());
 		donationRepository.save(donation);
-		
+
 		dtoDonation.setId(donation.getId());
 		dtoDonation.setNameProject(project.getName());
 		dtoDonation.setPoints(donation.getPoints());
@@ -72,5 +73,25 @@ public class DonorService {
 	public List<Location> findAllLocations() {
 		// TODO Auto-generated method stub
 		return locationRepository.findAll();
+	}
+
+	public DtoDonor donorId(Integer id) {
+		Donor donor = donorRepository.findById(id).get();
+		Integer sum = donationRepository.sumPoints(donor.getNickname());
+		//Integer bonus = donationRepository.bonusProjects(donor.getNickname()).size();
+
+		if (sum == null) {
+			sum = 0;
+		}
+
+		DtoDonor newDonor = new DtoDonor();
+		newDonor.setId(id);
+		newDonor.setName(donor.getName());
+		newDonor.setNickname(donor.getNickname());
+		newDonor.setMail(donor.getMail());
+		newDonor.setPassword(donor.getPassword());
+		newDonor.setPoints(sum /*+ bonus * 500*/);
+
+		return newDonor;
 	}
 }
