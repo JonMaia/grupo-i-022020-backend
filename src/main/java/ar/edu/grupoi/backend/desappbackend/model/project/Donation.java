@@ -2,10 +2,21 @@ package ar.edu.grupoi.backend.desappbackend.model.project;
 
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+@Entity
 public class Donation {
 	
-	private final LocalDate date;
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+	private LocalDate date;
 	private Integer amount;
+	@OneToOne
 	private Project project;
 	private String nickname;
 	private Integer points;
@@ -20,6 +31,10 @@ public class Donation {
 		this.points = 0;
 	}
 
+	public Integer getId() {
+		return id;
+	}
+	
 	public LocalDate getDate() {
 		return date;
 	}

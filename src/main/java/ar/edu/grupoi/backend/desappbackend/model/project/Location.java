@@ -1,12 +1,23 @@
 package ar.edu.grupoi.backend.desappbackend.model.project;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Location {
 
-	private final String name;
-	private final String province;
-	private final int population;
-	private final boolean state;
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+	private String name;
+	private String province;
+	private int population;
+	private boolean state;
 
+	public Location() {}
+	
 	public Location(String name, String province, int population, boolean state) {
 		this.name       = name;
 		this.province   = province;
@@ -14,6 +25,8 @@ public class Location {
 		this.state      = state;
 	}
 
+	public Integer getId() {return id; }
+	
 	public String getName() { return name; }
 
 	public String getProvince() { return province; }
