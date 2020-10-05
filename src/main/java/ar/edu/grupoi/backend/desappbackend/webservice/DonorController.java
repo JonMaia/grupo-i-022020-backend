@@ -1,7 +1,5 @@
 package ar.edu.grupoi.backend.desappbackend.webservice;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ar.edu.grupoi.backend.desappbackend.dto.DtoDonation;
 import ar.edu.grupoi.backend.desappbackend.dto.DtoDonor;
-import ar.edu.grupoi.backend.desappbackend.model.project.Location;
-import ar.edu.grupoi.backend.desappbackend.model.project.Project;
 import ar.edu.grupoi.backend.desappbackend.model.user.Donor;
 import ar.edu.grupoi.backend.desappbackend.service.DonorService;
 import ar.edu.grupoi.backend.desappbackend.webservice.exception.ErrorLogin;
@@ -42,19 +38,6 @@ public class DonorController {
 		Donor donorLogin = donorService.login(donor.getMail(), donor.getPassword());
 		return new ResponseEntity<>(donorLogin, HttpStatus.OK);
 	}
-	
-	/*
-	 * 
-	 * {
-			"idDonor": "1" ,
-			"idProject": "4",
-			"amount": 1000,
-			"comment": "primera donacion"
-		}
-		
-		debe retornar 1000 puntos
-		y con amuont menos 0
-	 * */
 
 	@CrossOrigin
 	@PostMapping("/donate")
@@ -64,20 +47,8 @@ public class DonorController {
 
 	@CrossOrigin
 	@GetMapping("/points/{id}")
-	public DtoDonor donorId(@PathVariable(value= "id") Integer id) {
+	public DtoDonor donorId(@PathVariable(value = "id") Integer id) {
 		return donorService.donorId(id);
-	}
-	
-	@CrossOrigin
-	@GetMapping("/project")
-	public List<Project> projects() {
-		return donorService.findAllProjects();
-	}
-	
-	@CrossOrigin
-	@GetMapping("/location")
-	public List<Location> locations() {
-		return donorService.findAllLocations();
 	}
 
 }

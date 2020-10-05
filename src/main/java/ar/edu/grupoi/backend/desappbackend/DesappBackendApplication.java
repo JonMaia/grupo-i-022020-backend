@@ -9,10 +9,13 @@ import org.springframework.context.annotation.Bean;
 
 import ar.edu.grupoi.backend.desappbackend.model.project.Location;
 import ar.edu.grupoi.backend.desappbackend.model.project.Project;
+import ar.edu.grupoi.backend.desappbackend.model.user.Admin;
 import ar.edu.grupoi.backend.desappbackend.model.user.Donor;
+import ar.edu.grupoi.backend.desappbackend.repositories.AdminRepository;
 import ar.edu.grupoi.backend.desappbackend.repositories.DonorRepository;
 import ar.edu.grupoi.backend.desappbackend.repositories.LocationRepository;
 import ar.edu.grupoi.backend.desappbackend.repositories.ProjectRepository;
+import ar.edu.grupoi.backend.desappbackend.service.builder.AdminBuilder;
 import ar.edu.grupoi.backend.desappbackend.service.builder.DonorBuilder;
 import ar.edu.grupoi.backend.desappbackend.service.builder.LocationBuilder;
 import ar.edu.grupoi.backend.desappbackend.service.builder.ProjectBuilder;
@@ -25,9 +28,13 @@ public class DesappBackendApplication {
 	}
 
 	@Bean
-	ApplicationRunner applicationRunner(DonorRepository donorRepository, LocationRepository locationRepository,
+	ApplicationRunner applicationRunner(AdminRepository adminRepository, DonorRepository donorRepository, LocationRepository locationRepository,
 			ProjectRepository projectRepository) {
 		return args -> {
+			
+			Admin admin = AdminBuilder.whitName("Admin").whitMail("admin@mail.com").whitPassword("admin123")
+					.builder();
+
 
 			Donor cris = DonorBuilder.whitName("Cristian").whitMail("cris@mail.com").whitPassword("cris123")
 					.withNickname("Cris").builder();
@@ -48,6 +55,7 @@ public class DesappBackendApplication {
 					.withEndDate(LocalDate.of(2020, 11, 23)).withLocation(quilmes).withFactor(50.0)
 					.withInitialDate(LocalDate.now()).builder();
 
+			adminRepository.save(admin);
 			donorRepository.save(cris);
 			donorRepository.save(jony);
 			locationRepository.save(avellaneda);

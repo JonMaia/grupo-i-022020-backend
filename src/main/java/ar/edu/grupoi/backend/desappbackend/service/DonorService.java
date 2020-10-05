@@ -1,19 +1,15 @@
 package ar.edu.grupoi.backend.desappbackend.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.edu.grupoi.backend.desappbackend.dto.DtoDonation;
 import ar.edu.grupoi.backend.desappbackend.dto.DtoDonor;
 import ar.edu.grupoi.backend.desappbackend.model.project.Donation;
-import ar.edu.grupoi.backend.desappbackend.model.project.Location;
 import ar.edu.grupoi.backend.desappbackend.model.project.Project;
 import ar.edu.grupoi.backend.desappbackend.model.user.Donor;
 import ar.edu.grupoi.backend.desappbackend.repositories.DonationRepository;
 import ar.edu.grupoi.backend.desappbackend.repositories.DonorRepository;
-import ar.edu.grupoi.backend.desappbackend.repositories.LocationRepository;
 import ar.edu.grupoi.backend.desappbackend.repositories.ProjectRepository;
 import ar.edu.grupoi.backend.desappbackend.webservice.exception.ErrorLogin;
 import ar.edu.grupoi.backend.desappbackend.webservice.exception.ExistingUser;
@@ -29,9 +25,6 @@ public class DonorService {
 
 	@Autowired
 	private DonationRepository donationRepository;
-
-	@Autowired
-	private LocationRepository locationRepository;
 
 	public Donor create(Donor donor) throws ExistingUser {
 		Donor donorFind = donorRepository.findByMail(donor.getMail());
@@ -56,23 +49,14 @@ public class DonorService {
 	public DtoDonation donate(DtoDonation dtoDonation) {
 		Donor donor = donorRepository.findById(dtoDonation.getIdDonor()).get();
 		Project project = projectRepository.findById(dtoDonation.getIdProject()).get();
+		
 		Donation donation = donor.donate(project, dtoDonation.getAmount(), dtoDonation.getComment());
-		donationRepository.save(donation);
+		Donation donationId = donationRepository.save(donation);
 
-		dtoDonation.setId(donation.getId());
+		dtoDonation.setId(donationId.getId());
 		dtoDonation.setNameProject(project.getName());
-		dtoDonation.setPoints(donation.getPoints());
+		dtoDonation.setPoints(donationId.getPoints());
 		return dtoDonation;
-	}
-
-	public List<Project> findAllProjects() {
-		// TODO Auto-generated method stub
-		return projectRepository.findAll();
-	}
-
-	public List<Location> findAllLocations() {
-		// TODO Auto-generated method stub
-		return locationRepository.findAll();
 	}
 
 	public DtoDonor donorId(Integer id) {
