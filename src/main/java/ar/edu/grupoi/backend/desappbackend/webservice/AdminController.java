@@ -40,4 +40,10 @@ public class AdminController {
 	public Project finishCollection(@RequestBody DtoProject project) {
 		return adminService.finishCollection(project);
 	}
+	
+	@CrossOrigin
+	@PostMapping("/notifynews")
+	public void notifyNews(@RequestBody DtoProject project) {
+		adminService.notifyNews(project);
+	}
 }

@@ -1,6 +1,7 @@
 package ar.edu.grupoi.backend.desappbackend.service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +10,9 @@ import ar.edu.grupoi.backend.desappbackend.dto.DtoProject;
 import ar.edu.grupoi.backend.desappbackend.model.project.Location;
 import ar.edu.grupoi.backend.desappbackend.model.project.Project;
 import ar.edu.grupoi.backend.desappbackend.model.user.Admin;
+import ar.edu.grupoi.backend.desappbackend.model.user.Donor;
 import ar.edu.grupoi.backend.desappbackend.repositories.AdminRepository;
+import ar.edu.grupoi.backend.desappbackend.repositories.DonorRepository;
 import ar.edu.grupoi.backend.desappbackend.repositories.LocationRepository;
 import ar.edu.grupoi.backend.desappbackend.repositories.ProjectRepository;
 import ar.edu.grupoi.backend.desappbackend.webservice.exception.ErrorLogin;
@@ -25,6 +28,12 @@ public class AdminService {
 
 	@Autowired
 	private ProjectRepository projectRepository;
+		
+	@Autowired
+    private EmailService emailService;
+	
+	@Autowired
+	private DonorRepository donorRepository;
 
 	public Admin login(String mail, String password) throws ErrorLogin {
 		try {
@@ -39,8 +48,8 @@ public class AdminService {
 	}
 
 	public DtoProject createProject(DtoProject dtoProject) {
-		Admin admin = adminRepository.findById(dtoProject.getAdminId()).get();
-		Location locationId = locationRepository.findById(dtoProject.getLocationId()).get();
+		Admin admin = adminRepository.findById(dtoProject.getIdAdmin()).get();
+		Location locationId = locationRepository.findById(dtoProject.getIdLocation()).get();
 
 		String name = dtoProject.getName();
 		double minPercentage = dtoProject.getMinPercentage();
@@ -51,19 +60,26 @@ public class AdminService {
 		Project project = admin.createProject(name, minPercentage, endDate, location, factor);
 		Project projectId = projectRepository.save(project);
 
-		dtoProject.setProjectId(projectId.getId());
+		dtoProject.setIdProject(projectId.getId());
 		dtoProject.setNameLocation(projectId.getLocation().getName());
 
 		return dtoProject;
 	}
 
 	public Project finishCollection(DtoProject dtoProject) {
-		Admin admin = adminRepository.findById(dtoProject.getAdminId()).get();
-		Project projectId = projectRepository.findById(dtoProject.getProjectId()).get();
+		Admin admin = adminRepository.findById(dtoProject.getIdAdmin()).get();
+		Project projectId = projectRepository.findById(dtoProject.getIdProject()).get();
 		
 		admin.finishCollection(projectId);
 		Project project = projectRepository.save(projectId);
 		return project;
+	}
+
+	public void notifyNews(DtoProject dtoProject) {
+		Project project = projectRepository.findById(dtoProject.getIdProject()).get();
+		List<Donor> donors = donorRepository.findDonors(dtoProject.getIdProject());
+		
+		emailService.notifyNews(donors, project);
 	}
 
 }
