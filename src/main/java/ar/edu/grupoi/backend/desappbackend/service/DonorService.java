@@ -1,5 +1,7 @@
 package ar.edu.grupoi.backend.desappbackend.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -76,5 +78,13 @@ public class DonorService {
 		newDonor.setPoints(sum + bonus * 500);
 
 		return newDonor;
+	}
+
+	public List<Donor> findDonors(Integer idProject) {
+		return donorRepository.findDonors(idProject);
+	}
+
+	public List<Donor> findAll() {
+		return donorRepository.findAll();
 	}
 }

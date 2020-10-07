@@ -32,7 +32,7 @@ public class AdminService {
     private EmailService emailService;
 	
 	@Autowired
-	private DonorRepository donorRepository;
+	private DonorService donorService;
 
 	public Admin login(String mail, String password) throws ErrorLogin {
 		try {
@@ -76,9 +76,20 @@ public class AdminService {
 
 	public void notifyNews(DtoProject dtoProject) {
 		Project project = projectService.findById(dtoProject.getIdProject());
-		List<Donor> donors = donorRepository.findDonors(dtoProject.getIdProject());
+		List<Donor> donors = donorService.findDonors(dtoProject.getIdProject());
 		
 		emailService.notifyNews(donors, project);
+	}
+
+	public void top10DonationsLocalidations() {
+		System.out.println("empiezo");
+		List<Project> projects = projectService.top10ProjectDonationes();
+		System.out.println("Esto sale en pantalla\n");
+		System.out.println(projects.size());
+		List<Donor> donors = donorService.findAll();
+		System.out.println("donors");
+		System.out.println(donors.size());
+		emailService.sendTop10(projects, donors);
 	}
 
 }

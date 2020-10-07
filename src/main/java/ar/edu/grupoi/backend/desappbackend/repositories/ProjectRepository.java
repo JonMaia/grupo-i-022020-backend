@@ -28,4 +28,13 @@ public interface ProjectRepository extends JpaRepository<Project, Integer> {
 			+ "ORDER BY DAY(p.end_date) ASC",
 			nativeQuery = true)
 	List<Project> findAllByEndDate(LocalDate localDate);
+
+	@Query(value = "SELECT p.* FROM project p "
+			+ "INNER JOIN donation d "
+			+ "ON d.project_id = p.id " 
+			+ "GROUP BY p.id, d.amount "
+			+ "ORDER BY d.amount desc "
+			+ "FETCH FIRST 10 ROWS ONLY",
+			nativeQuery = true)
+	List<Project> top10();
 }

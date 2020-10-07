@@ -58,4 +58,37 @@ public class EmailService {
         }
 	}
 
+	public void sendTop10(List<Project> projects, List<Donor> donors) {
+		for (Donor donor : donors) {
+			senTop10ADonor(donor, projects);
+		}
+	}
+
+	private void senTop10ADonor(Donor donor, List<Project> projects) {
+		MimeMessage mailMessage = javaMailSender.createMimeMessage();
+        MimeMessageHelper helper;
+        try {
+            helper = new MimeMessageHelper(mailMessage, true);
+            helper.setTo(donor.getMail());
+            helper.setSubject("Notify News");
+            helper.setText(
+                    "<html>"
+                    + "<body>"
+                    + "<div>"
+                    + "<div> Dear " + donor.getName() + "</div>"
+                    + "<div>We inform you that project: </div>"
+                    + "<div><strong>"+projects+ "</strong></div>"
+                    + "<div> will be started. <div/>"
+                    + "</div>"
+                    + "<div>Thanks to your donation.</div>"
+                    + "<div>The Team Admin.</div>"
+                    + "</body>"
+                    + "</html>", true);
+
+            javaMailSender.send(mailMessage);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+	}
+
 }

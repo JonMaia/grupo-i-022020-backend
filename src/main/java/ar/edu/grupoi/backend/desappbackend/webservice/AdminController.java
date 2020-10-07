@@ -30,20 +30,26 @@ public class AdminController {
 	}
 	
 	@CrossOrigin
-	@PostMapping("/createproject")
+	@PostMapping("/create_project")
 	public DtoProject createProject(@RequestBody DtoProject project) {
 		return adminService.createProject(project);
 	}
 	
 	@CrossOrigin
-	@PostMapping("/finishcollection")
+	@PostMapping("/finish_collection")
 	public Project finishCollection(@RequestBody DtoProject project) {
 		return adminService.finishCollection(project);
 	}
 	
 	@CrossOrigin
-	@PostMapping("/notifynews")
+	@PostMapping("/notify_news")
 	public void notifyNews(@RequestBody DtoProject project) {
 		adminService.notifyNews(project);
+	}
+	
+	@CrossOrigin
+	@PostMapping("/top10")
+	public void top10() {
+		adminService.top10DonationsLocalidations();
 	}
 }

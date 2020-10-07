@@ -31,4 +31,8 @@ public class ProjectService {
 		return projectRepository.findById(idProject).get();
 	}
 
+	public List<Project> top10ProjectDonationes() {
+		return projectRepository.top10();
+	}
+
 }
