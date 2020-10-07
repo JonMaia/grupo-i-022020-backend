@@ -10,7 +10,6 @@ import ar.edu.grupoi.backend.desappbackend.model.project.Project;
 import ar.edu.grupoi.backend.desappbackend.model.user.Donor;
 import ar.edu.grupoi.backend.desappbackend.repositories.DonationRepository;
 import ar.edu.grupoi.backend.desappbackend.repositories.DonorRepository;
-import ar.edu.grupoi.backend.desappbackend.repositories.ProjectRepository;
 import ar.edu.grupoi.backend.desappbackend.webservice.exception.ErrorLogin;
 import ar.edu.grupoi.backend.desappbackend.webservice.exception.ExistingUser;
 
@@ -21,7 +20,7 @@ public class DonorService {
 	private DonorRepository donorRepository;
 
 	@Autowired
-	private ProjectRepository projectRepository;
+	private ProjectService projectService;
 
 	@Autowired
 	private DonationRepository donationRepository;
@@ -48,7 +47,7 @@ public class DonorService {
 
 	public DtoDonation donate(DtoDonation dtoDonation) {
 		Donor donor = donorRepository.findById(dtoDonation.getIdDonor()).get();
-		Project project = projectRepository.findById(dtoDonation.getIdProject()).get();
+		Project project = projectService.findById(dtoDonation.getIdProject());
 		
 		Donation donation = donor.donate(project, dtoDonation.getAmount(), dtoDonation.getComment());
 		Donation donationId = donationRepository.save(donation);

@@ -14,7 +14,6 @@ import ar.edu.grupoi.backend.desappbackend.model.user.Donor;
 import ar.edu.grupoi.backend.desappbackend.repositories.AdminRepository;
 import ar.edu.grupoi.backend.desappbackend.repositories.DonorRepository;
 import ar.edu.grupoi.backend.desappbackend.repositories.LocationRepository;
-import ar.edu.grupoi.backend.desappbackend.repositories.ProjectRepository;
 import ar.edu.grupoi.backend.desappbackend.webservice.exception.ErrorLogin;
 
 @Service
@@ -27,7 +26,7 @@ public class AdminService {
 	private LocationRepository locationRepository;
 
 	@Autowired
-	private ProjectRepository projectRepository;
+	private ProjectService projectService;
 		
 	@Autowired
     private EmailService emailService;
@@ -58,7 +57,7 @@ public class AdminService {
 		Double factor = dtoProject.getFactor();
 
 		Project project = admin.createProject(name, minPercentage, endDate, location, factor);
-		Project projectId = projectRepository.save(project);
+		Project projectId = projectService.save(project);
 
 		dtoProject.setIdProject(projectId.getId());
 		dtoProject.setNameLocation(projectId.getLocation().getName());
@@ -68,15 +67,15 @@ public class AdminService {
 
 	public Project finishCollection(DtoProject dtoProject) {
 		Admin admin = adminRepository.findById(dtoProject.getIdAdmin()).get();
-		Project projectId = projectRepository.findById(dtoProject.getIdProject()).get();
+		Project projectId = projectService.findById(dtoProject.getIdProject());
 		
 		admin.finishCollection(projectId);
-		Project project = projectRepository.save(projectId);
+		Project project = projectService.save(projectId);
 		return project;
 	}
 
 	public void notifyNews(DtoProject dtoProject) {
-		Project project = projectRepository.findById(dtoProject.getIdProject()).get();
+		Project project = projectService.findById(dtoProject.getIdProject());
 		List<Donor> donors = donorRepository.findDonors(dtoProject.getIdProject());
 		
 		emailService.notifyNews(donors, project);

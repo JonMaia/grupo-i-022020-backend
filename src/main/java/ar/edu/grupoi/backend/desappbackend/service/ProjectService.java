@@ -23,4 +23,12 @@ public class ProjectService {
 		return projectRepository.findAllByEndDate(LocalDate.now());
 	}
 
+	public Project save(Project project) {
+		return projectRepository.save(project);
+	}
+
+	public Project findById(Integer idProject) {
+		return projectRepository.findById(idProject).get();
+	}
+
 }
