@@ -14,7 +14,7 @@ public interface DonorRepository extends JpaRepository<Donor, Integer>{
 	@Query(value = "SELECT DISTINCT don.* FROM donor don "
 			+"INNER JOIN (SELECT d.nickname FROM donation d "
 			+"INNER JOIN project p ON d.project_id = ?1) dp " 
-			+"ON don.nickname = dp.nickname;",
+			+"ON don.nickname = dp.nickname",
 			nativeQuery = true)
 	List<Donor> findDonors(Integer projectId);
 
