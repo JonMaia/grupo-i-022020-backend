@@ -57,8 +57,8 @@ public class AdminService {
 		LocalDate endDate = dtoProject.getEndDate();
 		Double factor = dtoProject.getFactor();
 
-		Location location = new Location(locationName, province, population, state);
-		locationService.save(location);
+		Location newLocation = new Location(locationName, province, population, state);
+		Location location = locationService.save(newLocation);
 		
 		Project project = admin.createProject(name, minPercentage, endDate, location, factor);
 		return projectService.save(project);
