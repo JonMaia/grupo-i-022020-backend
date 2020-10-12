@@ -71,7 +71,7 @@ public class EmailService {
 		for (Project project : projects) {
 			names += project.getName() +", ";
 		}
-		return names.substring(0,names.length()-1);
+		return names.substring(0,names.length()-2);
 	}
 
 	private void senTop10ADonor(Donor donor, String projectNames) {
