@@ -12,7 +12,6 @@ import ar.edu.grupoi.backend.desappbackend.model.project.Project;
 import ar.edu.grupoi.backend.desappbackend.model.user.Admin;
 import ar.edu.grupoi.backend.desappbackend.model.user.Donor;
 import ar.edu.grupoi.backend.desappbackend.repositories.AdminRepository;
-import ar.edu.grupoi.backend.desappbackend.repositories.LocationRepository;
 import ar.edu.grupoi.backend.desappbackend.webservice.exception.ErrorLogin;
 
 @Service
@@ -45,7 +44,7 @@ public class AdminService {
 		}
 	}
 
-	public DtoProject createProject(DtoProject dtoProject) {
+	public Project createProject(DtoProject dtoProject) {
 		Admin admin = adminRepository.findById(dtoProject.getIdAdmin()).get();
 
 		String locationName = dtoProject.getLocationName();
@@ -62,12 +61,7 @@ public class AdminService {
 		Location location = locationService.save(newlocation);
 
 		Project project = admin.createProject(name, minPercentage, endDate, location, factor);
-		Project projectId = projectService.save(project);
-
-		dtoProject.setIdProject(projectId.getId());
-		dtoProject.setLocationName(projectId.getLocation().getName());
-
-		return dtoProject;
+		return projectService.save(project);
 	}
 
 	public Project finishCollection(DtoProject dtoProject) {
