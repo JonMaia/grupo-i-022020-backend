@@ -35,4 +35,22 @@ public class Location {
 
 	public boolean getState() { return state; }
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setProvince(String province) {
+		this.province = province;
+	}
+
+	public void setPopulation(int population) {
+		this.population = population;
+	}
+
+	public void setState(boolean state) {
+		this.state = state;
+	}
+	
+	
+
 }
