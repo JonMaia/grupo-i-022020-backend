@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 
 import ar.edu.grupoi.backend.desappbackend.model.project.Location;
@@ -20,7 +21,7 @@ import ar.edu.grupoi.backend.desappbackend.service.builder.DonorBuilder;
 import ar.edu.grupoi.backend.desappbackend.service.builder.LocationBuilder;
 import ar.edu.grupoi.backend.desappbackend.service.builder.ProjectBuilder;
 
-@SpringBootApplication
+@SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 public class DesappBackendApplication {
 
 	public static void main(String[] args) {
