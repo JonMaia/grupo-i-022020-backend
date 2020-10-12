@@ -15,18 +15,18 @@ public interface DonationRepository extends JpaRepository<Donation, Integer>{
 	            nativeQuery = true)
 	Integer sumPoints(String nickname);
 
-	/*	@Query(value = "SELECT * FROM " 
+	/*@Query(value = "SELECT COUNT(d.date) FROM donation d "
+			+"WHERE d.nickname = ?1 GROUP BY "
+			+"MONTH(d.date), "
+			+"YEAR (d.date)  "
+			+"HAVING COUNT(d.date) > 1",*/
+
+	@Query(value = "SELECT * FROM " 
 			+"(SELECT COUNT(d.date) FROM donation d "
 			+"WHERE d.nickname = ?1 GROUP BY "
 			+"(EXTRACT ('MONTH' FROM d.date)), "
 			+"(EXTRACT ('YEAR' FROM d.date))) f "
-			+"WHERE f.COUNT > 1",*/
-
-	@Query(value = "SELECT COUNT(d.date) FROM donation d "
-			+"WHERE d.nickname = ?1 GROUP BY "
-			+"MONTH(d.date), "
-			+"YEAR (d.date)  "
-			+"HAVING COUNT(d.date) > 1",
+			+"WHERE f.COUNT > 1",
             nativeQuery = true)
 	List<Integer> bonusProjects(String nickname);
 

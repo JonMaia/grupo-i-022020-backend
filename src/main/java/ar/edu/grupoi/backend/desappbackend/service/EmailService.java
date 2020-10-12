@@ -80,7 +80,7 @@ public class EmailService {
         try {
             helper = new MimeMessageHelper(mailMessage, true);
             helper.setTo(donor.getMail());
-            helper.setSubject("Notify News");
+            helper.setSubject("Tops 10");
             helper.setText(
                     "<html>"
                     + "<body>"
