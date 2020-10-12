@@ -60,7 +60,7 @@ public class AdminService {
 		Project projectId = projectService.save(project);
 
 		dtoProject.setIdProject(projectId.getId());
-		dtoProject.setNameLocation(projectId.getLocation().getName());
+		dtoProject.setLocationName(projectId.getLocation().getName());
 
 		return dtoProject;
 	}
