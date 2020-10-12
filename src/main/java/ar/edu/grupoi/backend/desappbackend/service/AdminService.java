@@ -23,7 +23,7 @@ public class AdminService {
 	private AdminRepository adminRepository;
 
 	@Autowired
-	private LocationRepository locationRepository;
+	private LocationService locationService;
 
 	@Autowired
 	private ProjectService projectService;
@@ -48,13 +48,19 @@ public class AdminService {
 
 	public DtoProject createProject(DtoProject dtoProject) {
 		Admin admin = adminRepository.findById(dtoProject.getIdAdmin()).get();
-		Location locationId = locationRepository.findById(dtoProject.getIdLocation()).get();
-
+	
+		String locationName = dtoProject.getLocationName();
+		String province = dtoProject.getLocationProvince();
+		int population = dtoProject.getLocationPopulation();
+		boolean state = dtoProject.getLocationState();
+		
 		String name = dtoProject.getName();
 		double minPercentage = dtoProject.getMinPercentage();
 		LocalDate endDate = dtoProject.getEndDate();
-		Location location = locationId;
 		Double factor = dtoProject.getFactor();
+
+		Location newlocation = new Location(locationName, province, population, state);
+		Location location = locationService.save(newlocation);
 
 		Project project = admin.createProject(name, minPercentage, endDate, location, factor);
 		Project projectId = projectService.save(project);
