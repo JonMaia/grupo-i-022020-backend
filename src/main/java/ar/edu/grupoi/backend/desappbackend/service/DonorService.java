@@ -48,8 +48,8 @@ public class DonorService {
 	}
 
 	public DtoDonation donate(DtoDonation dtoDonation) {
-		Donor donor = donorRepository.findById(dtoDonation.getDonorId()).get();
-		Project project = projectService.findById(dtoDonation.getProjectId());
+		Donor donor = donorRepository.findById(dtoDonation.getIdDonor()).get();
+		Project project = projectService.findById(dtoDonation.getIdProject());
 		
 		Donation donation = donor.donate(project, dtoDonation.getAmount(), dtoDonation.getComment());
 		Donation donationId = donationRepository.save(donation);

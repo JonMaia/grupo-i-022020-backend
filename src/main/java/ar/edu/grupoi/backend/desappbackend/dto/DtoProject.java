@@ -4,24 +4,21 @@ import java.time.LocalDate;
 
 public class DtoProject {
 
-	private Integer adminId;
-	private Integer locationId;
-	private Integer projectId;
+	private Integer idAdmin;
+	private Integer idLocation;
 	private String name;
 	private double minPercentage;
 	private LocalDate endDate;
 	private Double factor;
 	private String locationName;
-	private String locationProvince;
-	private int locationPopulation;
-	private boolean locationState;
+	private Integer idProject;
 
-	public Integer getAdminId() {
-		return adminId;
+	public Integer getIdAdmin() {
+		return idAdmin;
 	}
 
-	public Integer getLocationId() {
-		return locationId;
+	public Integer getIdLocation() {
+		return idLocation;
 	}
 
 	public String getName() {
@@ -48,29 +45,12 @@ public class DtoProject {
 		this.locationName = name;
 	}
 
-	public Integer getProjectId() {
-		return projectId;
+	public Integer getIdProject() {
+		return idProject;
 	}
 
-	public void setProjectId(Integer id) {
-		this.projectId = id;
+	public void setIdProject(Integer id) {
+		this.idProject = id;
 	}
 
-	public String getLocationName() {
-		return locationName;
-	}
-
-	public String getLocationProvince() {
-		return locationProvince;
-	}
-
-	public int getLocationPopulation() {
-		return locationPopulation;
-	}
-
-	public boolean getLocationState() {
-		return locationState;
-	}
-
-	
 }

@@ -11,8 +11,8 @@ public class DtoDonation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	private Integer donorId;
-	private Integer projectId;
+	private Integer idDonor;
+	private Integer idProject;
 	private String nameProject;
 	private Integer amount;
 	private String comment;
@@ -21,9 +21,9 @@ public class DtoDonation {
 	public DtoDonation() {
 	}
 
-	public DtoDonation(Integer donorId, Integer projectId, String nameProject, Integer amount, String comment) {
-		this.donorId = donorId;
-		this.projectId = projectId;
+	public DtoDonation(Integer idDonor, Integer idProject, String nameProject, Integer amount, String comment) {
+		this.idDonor = idDonor;
+		this.idProject = idProject;
 		this.nameProject = nameProject;
 		this.amount = amount;
 		this.comment = comment;
@@ -37,20 +37,20 @@ public class DtoDonation {
 		this.id = id;
 	}
 
-	public Integer getDonorId() {
-		return donorId;
+	public Integer getIdDonor() {
+		return idDonor;
 	}
 
-	public void setDonorId(Integer donorId) {
-		this.donorId = donorId;
+	public void setIdDonor(Integer idDonor) {
+		this.idDonor = idDonor;
 	}
 
-	public Integer getProjectId() {
-		return projectId;
+	public Integer getIdProject() {
+		return idProject;
 	}
 
-	public void setProjectId(Integer projectId) {
-		this.projectId = projectId;
+	public void setIdProject(Integer idProject) {
+		this.idProject = idProject;
 	}
 
 	public String getNameProject() {
