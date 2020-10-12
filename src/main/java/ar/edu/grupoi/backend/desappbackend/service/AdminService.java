@@ -61,7 +61,8 @@ public class AdminService {
 		Location location = locationService.save(newlocation);
 
 		Project project = admin.createProject(name, minPercentage, endDate, location, factor);
-		return projectService.save(project);
+		Project newProject = projectService.save(project);
+		return newProject;
 	}
 
 	public Project finishCollection(DtoProject dtoProject) {
