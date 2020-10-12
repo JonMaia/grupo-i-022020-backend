@@ -59,12 +59,22 @@ public class EmailService {
 	}
 
 	public void sendTop10(List<Project> projects, List<Donor> donors) {
+		String projectNames = this.findProjectNames(projects);
+		
 		for (Donor donor : donors) {
-			senTop10ADonor(donor, projects);
+			senTop10ADonor(donor, projectNames);
 		}
 	}
+	
+	private String findProjectNames(List<Project> projects) {
+		String names = "";
+		for (Project project : projects) {
+			names += project.getName() +", ";
+		}
+		return names.substring(0,names.length()-1);
+	}
 
-	private void senTop10ADonor(Donor donor, List<Project> projects) {
+	private void senTop10ADonor(Donor donor, String projectNames) {
 		MimeMessage mailMessage = javaMailSender.createMimeMessage();
         MimeMessageHelper helper;
         try {
@@ -76,11 +86,9 @@ public class EmailService {
                     + "<body>"
                     + "<div>"
                     + "<div> Dear " + donor.getName() + "</div>"
-                    + "<div>We inform you that project: </div>"
-                    + "<div><strong>"+projects+ "</strong></div>"
-                    + "<div> will be started. <div/>"
+                    + "<div>We inform then top 10 of donated projects: </div>"
+                    + "<div><strong>"+projectNames+ "</strong></div>"
                     + "</div>"
-                    + "<div>Thanks to your donation.</div>"
                     + "<div>The Team Admin.</div>"
                     + "</body>"
                     + "</html>", true);

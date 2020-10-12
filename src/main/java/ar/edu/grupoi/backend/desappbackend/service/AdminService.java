@@ -82,13 +82,8 @@ public class AdminService {
 	}
 
 	public void top10DonationsLocalidations() {
-		System.out.println("empiezo");
 		List<Project> projects = projectService.top10ProjectDonationes();
-		System.out.println("Esto sale en pantalla\n");
-		System.out.println(projects.size());
 		List<Donor> donors = donorService.findAll();
-		System.out.println("donors");
-		System.out.println(donors.size());
 		emailService.sendTop10(projects, donors);
 	}
 
