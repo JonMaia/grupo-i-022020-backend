@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 import ar.edu.grupoi.backend.desappbackend.dto.DtoProject;
@@ -23,7 +24,7 @@ public class AdminService {
 	private AdminRepository adminRepository;
 
 	@Autowired
-	private LocationRepository locationRepository;
+	private LocationService locationService;
 
 	@Autowired
 	private ProjectService projectService;
@@ -33,6 +34,7 @@ public class AdminService {
 	
 	@Autowired
 	private DonorService donorService;
+
 
 	public Admin login(String mail, String password) throws ErrorLogin {
 		try {
@@ -46,28 +48,29 @@ public class AdminService {
 		}
 	}
 
-	public DtoProject createProject(DtoProject dtoProject) {
-		Admin admin = adminRepository.findById(dtoProject.getIdAdmin()).get();
-		Location locationId = locationRepository.findById(dtoProject.getIdLocation()).get();
-
+	public Project createProject(DtoProject dtoProject) {
+		Admin admin = adminRepository.findById(dtoProject.getAdminId()).get();
+		
+		String locationName = dtoProject.getLocationName();
+		String province = dtoProject.getLocationProvince();
+		int population = dtoProject.getLocationPopulation();
+		boolean state = dtoProject.getLocationState();
+		
 		String name = dtoProject.getName();
 		double minPercentage = dtoProject.getMinPercentage();
 		LocalDate endDate = dtoProject.getEndDate();
-		Location location = locationId;
 		Double factor = dtoProject.getFactor();
 
+		Location location = new Location(locationName, province, population, state);
+		locationService.save(location);;
+
 		Project project = admin.createProject(name, minPercentage, endDate, location, factor);
-		Project projectId = projectService.save(project);
-
-		dtoProject.setIdProject(projectId.getId());
-		dtoProject.setNameLocation(projectId.getLocation().getName());
-
-		return dtoProject;
+		return projectService.save(project);
 	}
 
 	public Project finishCollection(DtoProject dtoProject) {
-		Admin admin = adminRepository.findById(dtoProject.getIdAdmin()).get();
-		Project projectId = projectService.findById(dtoProject.getIdProject());
+		Admin admin = adminRepository.findById(dtoProject.getAdminId()).get();
+		Project projectId = projectService.findById(dtoProject.getProjectId());
 		
 		admin.finishCollection(projectId);
 		Project project = projectService.save(projectId);
@@ -75,20 +78,16 @@ public class AdminService {
 	}
 
 	public void notifyNews(DtoProject dtoProject) {
-		Project project = projectService.findById(dtoProject.getIdProject());
-		List<Donor> donors = donorService.findDonors(dtoProject.getIdProject());
+		Project project = projectService.findById(dtoProject.getProjectId());
+		List<Donor> donors = donorService.findDonors(dtoProject.getProjectId());
 		
 		emailService.notifyNews(donors, project);
 	}
 
 	public void top10DonationsLocalidations() {
-		System.out.println("empiezo");
 		List<Project> projects = projectService.top10ProjectDonationes();
-		System.out.println("Esto sale en pantalla\n");
-		System.out.println(projects.size());
 		List<Donor> donors = donorService.findAll();
-		System.out.println("donors");
-		System.out.println(donors.size());
+
 		emailService.sendTop10(projects, donors);
 	}
 
