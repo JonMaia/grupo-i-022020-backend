@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 import ar.edu.grupoi.backend.desappbackend.dto.DtoProject;
@@ -13,7 +12,6 @@ import ar.edu.grupoi.backend.desappbackend.model.project.Project;
 import ar.edu.grupoi.backend.desappbackend.model.user.Admin;
 import ar.edu.grupoi.backend.desappbackend.model.user.Donor;
 import ar.edu.grupoi.backend.desappbackend.repositories.AdminRepository;
-import ar.edu.grupoi.backend.desappbackend.repositories.DonorRepository;
 import ar.edu.grupoi.backend.desappbackend.repositories.LocationRepository;
 import ar.edu.grupoi.backend.desappbackend.webservice.exception.ErrorLogin;
 
@@ -24,7 +22,7 @@ public class AdminService {
 	private AdminRepository adminRepository;
 
 	@Autowired
-	private LocationService locationService;
+	private LocationRepository locationService;
 
 	@Autowired
 	private ProjectService projectService;
