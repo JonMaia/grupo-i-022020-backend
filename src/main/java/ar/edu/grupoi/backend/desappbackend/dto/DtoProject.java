@@ -12,9 +12,6 @@ public class DtoProject {
 	private Double factor;
 	private String locationName;
 	private Integer idProject;
-	private String locationProvince;
-	private int locationPopulation;
-	private boolean locationState;
 
 	public Integer getIdAdmin() {
 		return idAdmin;
@@ -54,22 +51,6 @@ public class DtoProject {
 
 	public void setIdProject(Integer id) {
 		this.idProject = id;
-	}
-
-	public String getLocationName() {
-		return locationName;
-	}
-
-	public String getLocationProvince() {
-		return locationProvince;
-	}
-
-	public int getLocationPopulation() {
-		return locationPopulation;
-	}
-
-	public boolean getLocationState() {
-		return locationState;
 	}
 
 }
