@@ -31,7 +31,7 @@ public class AdminController {
 	
 	@CrossOrigin
 	@PostMapping("/create_project")
-	public Project createProject(@RequestBody DtoProject project) {
+	public DtoProject createProject(@RequestBody DtoProject project) {
 		return adminService.createProject(project);
 	}
 	
