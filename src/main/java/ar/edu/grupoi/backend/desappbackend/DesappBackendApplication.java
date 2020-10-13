@@ -29,7 +29,7 @@ public class DesappBackendApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DesappBackendApplication.class, args);
 	}
-
+/*
 	@Bean
 	ApplicationRunner applicationRunner(AdminRepository adminRepository, DonorRepository donorRepository, LocationRepository locationRepository,
 			ProjectRepository projectRepository, DonorService donorService) {
@@ -89,5 +89,5 @@ public class DesappBackendApplication {
 			donorService.donate(donationQuilmes);
 		};
 
-	}
+	}*/
 }
