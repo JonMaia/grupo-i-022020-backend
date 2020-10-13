@@ -17,10 +17,10 @@ public class DonorServiceTest extends DesappBackendApplicationTests {
 
 	@Test
 	public void aDonorPersistsShouldValiedWhenGettersValuesMatch() throws ErrorLogin {
-		Donor donor = donorService.login("cris@mail.com", "cris123");
+		Donor donor = donorService.login("cris.esroj@gmail.com", "cris123");
 
 		assertThat(donor.getName()).isEqualTo("Cristian");
-		assertThat(donor.getMail()).isEqualTo("cris@mail.com");
+		assertThat(donor.getMail()).isEqualTo("cris.esroj@gmail.com");
 		assertThat(donor.getPassword()).isEqualTo("cris123");
 		assertThat(donor.getNickname()).isEqualTo("Cris");
 	}
