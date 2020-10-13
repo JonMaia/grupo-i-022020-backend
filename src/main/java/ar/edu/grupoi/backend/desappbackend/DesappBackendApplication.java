@@ -61,7 +61,7 @@ public class DesappBackendApplication {
 					.withState(true).builder();
 
 			Project varelaProject = ProjectBuilder.withName("Varela con Internet")
-					.withEndDate(LocalDate.of(2020, 12, 23)).withLocation(varela).withFactor(2000.0)
+					.withEndDate(LocalDate.of(2020, 12, 23)).withLocation(varela).withFactor(50.0)
 					.withInitialDate(LocalDate.now()).builder();
 
 			adminRepository.save(admin);
@@ -77,14 +77,14 @@ public class DesappBackendApplication {
 			DtoDonation donationVarela = new DtoDonation();
 			donationVarela.setIdDonor(2);
 			donationVarela.setIdProject(9);
-			donationVarela.setAmount(3000000);
+			donationVarela.setAmount(100000);
 			donationVarela.setComment("first donation");
 			donorService.donate(donationVarela);
 			
 			DtoDonation donationQuilmes = new DtoDonation();
 			donationQuilmes.setIdDonor(2);
 			donationQuilmes.setIdProject(8);
-			donationQuilmes.setAmount(1000000);
+			donationQuilmes.setAmount(10000);
 			donationQuilmes.setComment("first donation");
 			donorService.donate(donationQuilmes);
 		};
