@@ -42,12 +42,6 @@ public class AdminController {
 	}
 	
 	@CrossOrigin
-	@PostMapping("/notify_news")
-	public void notifyNews(@RequestBody DtoProject project) {
-		adminService.notifyNews(project);
-	}
-	
-	@CrossOrigin
 	@PostMapping("/top10")
 	public void top10() {
 		adminService.top10DonationsLocalidations();

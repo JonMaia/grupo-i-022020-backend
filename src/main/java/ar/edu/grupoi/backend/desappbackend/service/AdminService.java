@@ -25,10 +25,10 @@ public class AdminService {
 
 	@Autowired
 	private ProjectService projectService;
-		
+
 	@Autowired
-    private EmailService emailService;
-	
+	private EmailService emailService;
+
 	@Autowired
 	private DonorService donorService;
 
@@ -51,7 +51,7 @@ public class AdminService {
 		String province = dtoProject.getLocationProvince();
 		int population = dtoProject.getLocationPopulation();
 		boolean state = dtoProject.isLocationState();
-		
+
 		String name = dtoProject.getName();
 		double minPercentage = dtoProject.getMinPercentage();
 		LocalDate endDate = dtoProject.getEndDate();
@@ -68,17 +68,13 @@ public class AdminService {
 	public Project finishCollection(DtoProject dtoProject) {
 		Admin admin = adminRepository.findById(dtoProject.getIdAdmin()).get();
 		Project projectId = projectService.findById(dtoProject.getIdProject());
-		
+
 		admin.finishCollection(projectId);
 		Project project = projectService.save(projectId);
-		return project;
-	}
 
-	public void notifyNews(DtoProject dtoProject) {
-		Project project = projectService.findById(dtoProject.getIdProject());
 		List<Donor> donors = donorService.findDonors(dtoProject.getIdProject());
-		
 		emailService.notifyNews(donors, project);
+		return project;
 	}
 
 	public void top10DonationsLocalidations() {
