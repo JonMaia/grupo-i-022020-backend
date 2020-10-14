@@ -16,6 +16,8 @@ public class DtoProject {
 	private int locationPopulation;
 	private boolean locationState;
 	
+	public DtoProject() {}
+	
 	public Integer getIdAdmin() {
 		return idAdmin;
 	}

@@ -18,8 +18,7 @@ public class DtoDonation {
 	private String comment;
 	private Integer points;
 
-	public DtoDonation() {
-	}
+	public DtoDonation() {}
 
 	public DtoDonation(Integer idDonor, Integer idProject, String nameProject, Integer amount, String comment) {
 		this.idDonor = idDonor;
