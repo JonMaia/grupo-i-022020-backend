@@ -47,7 +47,7 @@ public class DesappBackendApplication {
 			Location avellaneda = LocationBuilder.withName("Avellaneda").whitProvince("Buenos Aires")
 					.whitPopulation(342677).withState(true).builder();
 
-			Project project = ProjectBuilder.withName("Avellaneda con Internet").withEndDate(LocalDate.of(2020, 12, 2))
+			Project project = ProjectBuilder.withName("Avellaneda con Internet").withEndDate(LocalDate.of(2020, 10, 28))
 					.withLocation(avellaneda).withFactor(50.0).withInitialDate(LocalDate.now()).builder();
 
 			Location quilmes = LocationBuilder.withName("Quilmes").whitProvince("Buenos Aires").whitPopulation(1500)
