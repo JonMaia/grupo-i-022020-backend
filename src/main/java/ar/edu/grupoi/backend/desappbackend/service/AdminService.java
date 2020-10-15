@@ -80,12 +80,13 @@ public class AdminService {
 	public void top10Donations() {
 		List<Project> projects = projectService.top10ProjectDonationes();
 		List<Donor> donors = donorService.findAll();
-		emailService.sendTop10(projects, donors);
+		emailService.sendTop10Projects(projects, donors);
 	}
 
-	public List<Location> top10Locations() {
+	public void top10Locations() {
 		List<Location> locations = locationService.top10();
-		return locations;
+		List<Donor> donors = donorService.findAll();
+		emailService.sendTop10Locations(locations, donors);
 	}
 
 }

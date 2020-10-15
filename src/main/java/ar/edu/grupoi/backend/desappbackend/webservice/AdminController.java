@@ -53,8 +53,8 @@ public class AdminController {
 	}
 	
 	@CrossOrigin
-	@GetMapping("/top10")
-	public List<Location> top10Location() {
-		return adminService.top10Locations();
+	@GetMapping("/top10_locations")
+	public void top10Location() {
+		adminService.top10Locations();
 	}
 }

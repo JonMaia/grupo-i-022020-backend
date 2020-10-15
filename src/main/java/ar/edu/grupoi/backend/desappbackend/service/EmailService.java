@@ -11,6 +11,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ar.edu.grupoi.backend.desappbackend.model.project.Location;
 import ar.edu.grupoi.backend.desappbackend.model.project.Project;
 import ar.edu.grupoi.backend.desappbackend.model.user.Donor;
 
@@ -58,11 +59,11 @@ public class EmailService {
         }
 	}
 
-	public void sendTop10(List<Project> projects, List<Donor> donors) {
+	public void sendTop10Projects(List<Project> projects, List<Donor> donors) {
 		String projectNames = this.findProjectNames(projects);
 		
 		for (Donor donor : donors) {
-			senTop10ADonor(donor, projectNames);
+			senTop10ADonorProject(donor, projectNames);
 		}
 	}
 	
@@ -74,13 +75,13 @@ public class EmailService {
 		return names.substring(0,names.length()-2);
 	}
 
-	private void senTop10ADonor(Donor donor, String projectNames) {
+	private void senTop10ADonorProject(Donor donor, String projectNames) {
 		MimeMessage mailMessage = javaMailSender.createMimeMessage();
         MimeMessageHelper helper;
         try {
             helper = new MimeMessageHelper(mailMessage, true);
             helper.setTo(donor.getMail());
-            helper.setSubject("Tops 10");
+            helper.setSubject("Tops 10 Project");
             helper.setText(
                     "<html>"
                     + "<body>"
@@ -97,6 +98,47 @@ public class EmailService {
         } catch (MessagingException e) {
             e.printStackTrace();
         }
+	}
+
+	public void sendTop10Locations(List<Location> locations, List<Donor> donors) {
+		String locationsNames = this.findLocationNames(locations);
+		
+		for (Donor donor : donors) {
+			senTop10LocationsADonor(donor, locationsNames);
+		}
+	}
+
+	private void senTop10LocationsADonor(Donor donor, String locationsNames) {
+		MimeMessage mailMessage = javaMailSender.createMimeMessage();
+        MimeMessageHelper helper;
+        try {
+            helper = new MimeMessageHelper(mailMessage, true);
+            helper.setTo(donor.getMail());
+            helper.setSubject("Tops 10 Localidades");
+            helper.setText(
+                    "<html>"
+                    + "<body>"
+                    + "<div>"
+                    + "<div> Dear " + donor.getName() + "</div>"
+                    + "<div>We inform then top 10 of minus donated localities: </div>"
+                    + "<div><strong>"+locationsNames+ "</strong></div>"
+                    + "</div>"
+                    + "<div>The Team Admin.</div>"
+                    + "</body>"
+                    + "</html>", true);
+
+            javaMailSender.send(mailMessage);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+	}
+
+	private String findLocationNames(List<Location> locations) {
+		String names = "";
+		for (Location location: locations) {
+			names += location.getName() +", ";
+		}
+		return names.substring(0,names.length()-2);
 	}
 
 }
