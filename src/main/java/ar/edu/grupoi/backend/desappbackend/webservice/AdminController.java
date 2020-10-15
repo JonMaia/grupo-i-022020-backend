@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,7 +37,7 @@ public class AdminController {
 	}
 	
 	@CrossOrigin
-	@PostMapping("/finish_collection")
+	@PutMapping("/finish_collection")
 	public Project finishCollection(@RequestBody DtoProject project) {
 		return adminService.finishCollection(project);
 	}
