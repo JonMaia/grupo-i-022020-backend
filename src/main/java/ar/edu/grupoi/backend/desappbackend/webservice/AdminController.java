@@ -42,7 +42,7 @@ public class AdminController {
 	}
 	
 	@CrossOrigin
-	@PostMapping("/top10")
+	@PostMapping("/top10_donations")
 	public void top10() {
 		adminService.top10Donations();
 	}
