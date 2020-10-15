@@ -83,4 +83,9 @@ public class AdminService {
 		emailService.sendTop10(projects, donors);
 	}
 
+	public List<Location> top10Locations() {
+		List<Location> locations = locationService.top10();
+		return locations;
+	}
+
 }

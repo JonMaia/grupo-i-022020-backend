@@ -1,5 +1,7 @@
 package ar.edu.grupoi.backend.desappbackend.webservice;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.edu.grupoi.backend.desappbackend.dto.DtoProject;
+import ar.edu.grupoi.backend.desappbackend.model.project.Location;
 import ar.edu.grupoi.backend.desappbackend.model.project.Project;
 import ar.edu.grupoi.backend.desappbackend.model.user.Admin;
 import ar.edu.grupoi.backend.desappbackend.service.AdminService;
@@ -47,5 +50,11 @@ public class AdminController {
 	@GetMapping("/top10_donations")
 	public void top10() {
 		adminService.top10Donations();
+	}
+	
+	@CrossOrigin
+	@GetMapping("/top10")
+	public List<Location> top10Location() {
+		return adminService.top10Locations();
 	}
 }

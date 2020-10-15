@@ -25,4 +25,8 @@ public class LocationService {
 	public Location findById(Integer id) {
 		return locationRepository.findById(id).get();
 	}
+
+	public List<Location> top10() {
+		return locationRepository.top10();
+	}
 }

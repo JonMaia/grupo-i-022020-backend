@@ -51,9 +51,12 @@ public class DonorService {
 		Donor donor = donorRepository.findById(dtoDonation.getIdDonor()).get();
 		Project project = projectService.findById(dtoDonation.getIdProject());
 		
-		Donation donation = donor.donate(project, dtoDonation.getAmount(), dtoDonation.getComment());
+		Donation donation = donor.donate(dtoDonation.getDate(),project, dtoDonation.getAmount(), dtoDonation.getComment());
 		Donation donationId = donationRepository.save(donation);
 
+		project.updateCollection(dtoDonation.getAmount());
+		projectService.save(project);
+		
 		dtoDonation.setId(donationId.getId());
 		dtoDonation.setNameProject(project.getName());
 		dtoDonation.setPoints(donationId.getPoints());
