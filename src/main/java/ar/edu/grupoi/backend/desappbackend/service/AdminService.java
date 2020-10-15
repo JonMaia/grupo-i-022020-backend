@@ -77,7 +77,7 @@ public class AdminService {
 		return project;
 	}
 
-	public void top10Donations() {
+	public void top10DonationsLocalidations() {
 		List<Project> projects = projectService.top10ProjectDonationes();
 		List<Donor> donors = donorService.findAll();
 		emailService.sendTop10(projects, donors);
