@@ -4,6 +4,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @MappedSuperclass
 public abstract class User {
@@ -11,8 +14,14 @@ public abstract class User {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	protected Integer id;
+	@NotBlank(message = "Name is mandatory")
+	@Size(min = 5, max = 10)
 	protected String name;
+	@NotBlank(message = "Email is mandatory")
+	@Email(message = "Enter a correct email")
 	protected String mail;
+	@NotBlank(message = "Password is mandatory")
+	@Size(min = 5, max = 8)
 	protected String password;
 
 	public User() {}

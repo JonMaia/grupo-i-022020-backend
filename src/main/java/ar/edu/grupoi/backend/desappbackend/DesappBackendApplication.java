@@ -1,7 +1,12 @@
 package ar.edu.grupoi.backend.desappbackend;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
+import org.apache.tomcat.jni.Local;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -34,8 +39,40 @@ public class DesappBackendApplication {
 	ApplicationRunner applicationRunner(AdminRepository adminRepository, DonorRepository donorRepository, LocationRepository locationRepository,
 			ProjectRepository projectRepository, DonorService donorService) {
 		return args -> {
-			
-			Admin admin = AdminBuilder.whitName("Admin").whitMail("admin@mail.com").whitPassword("admin123")
+
+			int minFactor = 0;
+			int maxFactor = 100000;
+			int minPercentage = 50;
+			int maxPercentage = 100;
+			int minPopulation = 1000;
+			int maxPopulation = 100000;
+			long minDay = LocalDate.of(2020, 12, 24).toEpochDay();
+			long maxDay = LocalDate.of(2024, 12, 24).toEpochDay();
+			long oldMinDay = LocalDate.of(2017, 12, 24).toEpochDay();
+			long oldMaxDay = LocalDate.of(2020, 8, 24).toEpochDay();
+
+			List<String> locations = new ArrayList<String>(
+					Arrays.asList("Avellaneda", "Gerli", "Sarandi", "Villa Dominico", "Wilde", "Don Bosco", "Bernal",
+							"Quilmes", "Solano", "Berazategui", "Varela", "Dock Sud", "Banfield", "Lanus", "Lomas de Zamora",
+							"Adrogue", "Alejando Korn", "Bosques", "Cañuelas", "El Pato", "Ezpeleta", "Temperley", "Turdera")
+			);
+
+			locations.forEach((locationName) -> {
+				Location location = LocationBuilder.withName(locationName).whitProvince("Buenos Aires")
+						.whitPopulation((int)(Math.random() * (maxPopulation - minPopulation + 1) + minPopulation))
+						.withState(true).builder();
+				Project project = ProjectBuilder.withName(locationName + " con Internet")
+						.withEndDate(LocalDate.ofEpochDay(ThreadLocalRandom.current().nextLong(minDay, maxDay)))
+						.withLocation(location).withFactor((int) (Math.random() * (maxFactor - minFactor + 1)) +minFactor)
+						.withInitialDate(LocalDate.ofEpochDay(ThreadLocalRandom.current().nextLong(oldMinDay, oldMaxDay)))
+						.whitMinPercentage((int)(Math.random() * (maxPercentage - minPercentage + 1)+ minPercentage))
+						.builder();
+
+				locationRepository.save(location);
+				projectRepository.save(project);
+			});
+
+			Admin admin = AdminBuilder.whitName("Admin").whitMail("admin@gmail.com").whitPassword("admin123")
 					.builder();
 
 			Donor cris = DonorBuilder.whitName("Cristian").whitMail("cris.esroj@gmail.com").whitPassword("cris123")
@@ -44,49 +81,23 @@ public class DesappBackendApplication {
 			Donor jony = DonorBuilder.whitName("Jonathan").whitMail("jony_wilde05@hotmail.com").whitPassword("jony213")
 					.withNickname("Jony").builder();
 
-			Location avellaneda = LocationBuilder.withName("Avellaneda").whitProvince("Buenos Aires")
-					.whitPopulation(342677).withState(true).builder();
-
-			Project project = ProjectBuilder.withName("Avellaneda con Internet").withEndDate(LocalDate.of(2020, 10, 28))
-					.withLocation(avellaneda).withFactor(50.0).withInitialDate(LocalDate.now()).builder();
-
-			Location quilmes = LocationBuilder.withName("Quilmes").whitProvince("Buenos Aires").whitPopulation(1500)
-					.withState(true).builder();
-
-			Project otherProject = ProjectBuilder.withName("Quilmes con Internet")
-					.withEndDate(LocalDate.of(2020, 11, 23)).withLocation(quilmes)
-					.withInitialDate(LocalDate.now()).builder();
-			
-			Location varela = LocationBuilder.withName("Varela").whitProvince("Buenos Aires").whitPopulation(1500)
-					.withState(true).builder();
-
-			Project varelaProject = ProjectBuilder.withName("Varela con Internet")
-					.withEndDate(LocalDate.of(2020, 12, 23)).withLocation(varela).withFactor(50.0)
-					.withInitialDate(LocalDate.now()).builder();
-
 			adminRepository.save(admin);
 			donorRepository.save(cris);
 			donorRepository.save(jony);
-			locationRepository.save(avellaneda);
-			locationRepository.save(quilmes);
-			locationRepository.save(varela);
-			projectRepository.save(project);
-			projectRepository.save(otherProject);
-			projectRepository.save(varelaProject);
+			/*
+			DtoDonation donation = new DtoDonation();
+			donation.setIdDonor(2);
+			donation.setIdProject(2);
+			donation.setAmount(100000);
+			donation.setComment("first donation");
+			donorService.donate(donation);
 			
-			DtoDonation donationVarela = new DtoDonation();
-			donationVarela.setIdDonor(2);
-			donationVarela.setIdProject(9);
-			donationVarela.setAmount(100000);
-			donationVarela.setComment("first donation");
-			donorService.donate(donationVarela);
-			
-			DtoDonation donationQuilmes = new DtoDonation();
-			donationQuilmes.setIdDonor(2);
-			donationQuilmes.setIdProject(8);
-			donationQuilmes.setAmount(10000);
-			donationQuilmes.setComment("first donation");
-			donorService.donate(donationQuilmes);
+			DtoDonation otherDonation = new DtoDonation();
+			otherDonation.setIdDonor(2);
+			otherDonation.setIdProject(8);
+			otherDonation.setAmount(10000);
+			otherDonation.setComment("first donation");
+			donorService.donate(otherDonation);*/
 		};
 
 	}

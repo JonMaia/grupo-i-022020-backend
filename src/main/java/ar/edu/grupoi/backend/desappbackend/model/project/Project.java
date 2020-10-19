@@ -1,12 +1,13 @@
 package ar.edu.grupoi.backend.desappbackend.model.project;
 
 import java.time.LocalDate;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Project {
@@ -14,7 +15,9 @@ public class Project {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	private String name; // El nombre del proyecto es único en el sistema.
+	@NotBlank(message = "Name is mandatory")
+	private String name;
+	@NotNull(message = "Min percentage is mandatory")
 	private double minPercentage;
 	private double percentage = 0;
 	private double collection = 0;
