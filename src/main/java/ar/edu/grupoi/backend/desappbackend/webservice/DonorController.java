@@ -34,9 +34,15 @@ public class DonorController {
 
 	@CrossOrigin
 	@PostMapping("/login")
-	public ResponseEntity<Donor> login(@Valid @RequestBody Donor donor) throws ErrorLogin {
-		Donor donorLogin = donorService.login(donor.getMail(), donor.getPassword());
-		return new ResponseEntity<>(donorLogin, HttpStatus.OK);
+	public ResponseEntity login(@Valid @RequestBody Donor donor) {
+		Donor donorLogin;
+		try {
+			donorLogin = donorService.login(donor.getMail(), donor.getPassword());
+			return new ResponseEntity<>(donorLogin, HttpStatus.OK);
+		} catch (ErrorLogin e) {
+			return ResponseEntity.status(500)
+								.body(e.getMessage());
+		}
 	}
 
 	@CrossOrigin
