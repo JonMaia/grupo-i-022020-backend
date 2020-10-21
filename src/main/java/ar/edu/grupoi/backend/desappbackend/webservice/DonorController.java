@@ -27,9 +27,14 @@ public class DonorController {
 
 	@CrossOrigin
 	@PostMapping("/create")
-	public ResponseEntity<Donor> create(@Valid @RequestBody Donor donor) throws ExistingUser {
-		Donor newDonor = donorService.create(donor);
-		return new ResponseEntity<>(newDonor, HttpStatus.OK);
+	public ResponseEntity create(@Valid @RequestBody Donor donor) {
+		Donor newDonor;
+		try {
+			newDonor = donorService.create(donor);
+			return new ResponseEntity<>(newDonor, HttpStatus.OK);
+		} catch (ExistingUser e) {
+			return ResponseEntity.status(500).body(e.getMessage());
+		}
 	}
 
 	@CrossOrigin
@@ -40,8 +45,7 @@ public class DonorController {
 			donorLogin = donorService.login(donor.getMail(), donor.getPassword());
 			return new ResponseEntity<>(donorLogin, HttpStatus.OK);
 		} catch (ErrorLogin e) {
-			return ResponseEntity.status(500)
-								.body(e.getMessage());
+			return ResponseEntity.status(500).body(e.getMessage());
 		}
 	}
 
@@ -59,8 +63,7 @@ public class DonorController {
 
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(MethodArgumentNotValidException.class)
-	public Map<String, String> handleValidationExceptions(
-			MethodArgumentNotValidException ex) {
+	public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
 		Map<String, String> errors = new HashMap<>();
 		ex.getBindingResult().getAllErrors().forEach((error) -> {
 			String fieldName = ((FieldError) error).getField();
