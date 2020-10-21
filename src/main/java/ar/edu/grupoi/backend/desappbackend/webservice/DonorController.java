@@ -28,9 +28,8 @@ public class DonorController {
 	@CrossOrigin
 	@PostMapping("/create")
 	public ResponseEntity create(@Valid @RequestBody Donor donor) {
-		Donor newDonor;
 		try {
-			newDonor = donorService.create(donor);
+			Donor newDonor = donorService.create(donor);
 			return new ResponseEntity<>(newDonor, HttpStatus.OK);
 		} catch (ExistingUser e) {
 			return ResponseEntity.status(500).body(e.getMessage());
@@ -39,10 +38,9 @@ public class DonorController {
 
 	@CrossOrigin
 	@PostMapping("/login")
-	public ResponseEntity login(@Valid @RequestBody Donor donor) {
-		Donor donorLogin;
+	public ResponseEntity login(@Valid @RequestBody DtoDonor donor) {
 		try {
-			donorLogin = donorService.login(donor.getMail(), donor.getPassword());
+			Donor donorLogin = donorService.login(donor.getMail(), donor.getPassword());
 			return new ResponseEntity<>(donorLogin, HttpStatus.OK);
 		} catch (ErrorLogin e) {
 			return ResponseEntity.status(500).body(e.getMessage());
