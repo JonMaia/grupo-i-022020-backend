@@ -15,6 +15,7 @@ public class DtoProject {
 	private String locationProvince;
 	private int locationPopulation;
 	private boolean locationState;
+	private Integer cantDonations;
 	
 	public DtoProject() {}
 	
@@ -83,6 +84,14 @@ public class DtoProject {
 	}
 	public void setLocationState(boolean locationState) {
 		this.locationState = locationState;
+	}
+
+	public void setCantDonations(Integer cantDonations) {
+		this.cantDonations = cantDonations;
+	}
+	
+	public Integer getCantDonations() {
+		return cantDonations;
 	}
 
 }

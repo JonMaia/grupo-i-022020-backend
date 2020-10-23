@@ -28,4 +28,10 @@ public interface ProjectRepository extends JpaRepository<Project, Integer> {
 			+ "FETCH FIRST 10 ROWS ONLY",
 			nativeQuery = true)
 	List<Project> top10();
+
+	@Query(value = "SELECT COUNT(*) FROM project p "
+			+ "INNER JOIN donation d "
+			+ "ON d.project_id = ?1 ",
+			nativeQuery = true)
+	Integer cantDonations(Integer id);
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ar.edu.grupoi.backend.desappbackend.dto.DtoProject;
 import ar.edu.grupoi.backend.desappbackend.model.project.Project;
 import ar.edu.grupoi.backend.desappbackend.service.ProjectService;
 
@@ -33,7 +34,7 @@ public class ProjectController {
 	
 	@CrossOrigin
 	@GetMapping("/{id}")
-	public Project projectId(@PathVariable(value = "id") Integer id) {
-		return projectService.findById(id);
+	public DtoProject projectId(@PathVariable(value = "id") Integer id) {
+		return projectService.projectId(id);
 	}
 }

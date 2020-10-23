@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.edu.grupoi.backend.desappbackend.dto.DtoProject;
 import ar.edu.grupoi.backend.desappbackend.model.project.Project;
 import ar.edu.grupoi.backend.desappbackend.repositories.ProjectRepository;
 
@@ -33,6 +34,23 @@ public class ProjectService {
 
 	public List<Project> top10ProjectDonationes() {
 		return projectRepository.top10();
+	}
+
+	public DtoProject projectId(Integer id) {
+		Project project = projectRepository.findById(id).get();
+		Integer cantDonations = projectRepository.cantDonations(id);
+		
+		DtoProject dtoProject = new DtoProject();
+		dtoProject.setName(project.getName());
+		dtoProject.setEndDate(project.getEndDate());
+		dtoProject.setMinPercentage(project.getMinPercentage());
+		dtoProject.setFactor(project.getFactor());
+		dtoProject.setLocationName(project.getLocation().getName());
+		dtoProject.setLocationProvince(project.getLocation().getProvince());
+		dtoProject.setLocationPopulation(project.getLocation().getPopulation());
+		dtoProject.setLocationState(project.getLocation().getState());
+		dtoProject.setCantDonations(cantDonations);
+		return dtoProject;
 	}
 
 }
