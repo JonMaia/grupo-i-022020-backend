@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,5 +29,11 @@ public class ProjectController {
 	@GetMapping("/next_finish")
 	public List<Project> nextFinish() {
 		return projectService.nextFinish();
+	}
+	
+	@CrossOrigin
+	@GetMapping("/{id}")
+	public Project projectId(@PathVariable(value = "id") Integer id) {
+		return projectService.findById(id);
 	}
 }
