@@ -41,10 +41,12 @@ public class ProjectService {
 		Integer cantDonations = projectRepository.cantDonations(id);
 		
 		DtoProject dtoProject = new DtoProject();
+		dtoProject.setIdProject(id);
 		dtoProject.setName(project.getName());
 		dtoProject.setEndDate(project.getEndDate());
 		dtoProject.setMinPercentage(project.getMinPercentage());
 		dtoProject.setFactor(project.getFactor());
+		dtoProject.setIdLocation(project.getLocation().getId());
 		dtoProject.setLocationName(project.getLocation().getName());
 		dtoProject.setLocationProvince(project.getLocation().getProvince());
 		dtoProject.setLocationPopulation(project.getLocation().getPopulation());
