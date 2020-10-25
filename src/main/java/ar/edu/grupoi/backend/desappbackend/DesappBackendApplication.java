@@ -84,20 +84,29 @@ public class DesappBackendApplication {
 			adminRepository.save(admin);
 			donorRepository.save(cris);
 			donorRepository.save(jony);
-			/*
-			DtoDonation donation = new DtoDonation();
-			donation.setIdDonor(2);
-			donation.setIdProject(2);
-			donation.setAmount(100000);
-			donation.setComment("first donation");
-			donorService.donate(donation);
-			
-			DtoDonation otherDonation = new DtoDonation();
-			otherDonation.setIdDonor(2);
-			otherDonation.setIdProject(8);
-			otherDonation.setAmount(10000);
-			otherDonation.setComment("first donation");
-			donorService.donate(otherDonation);*/
+
+			projectRepository.findAll().forEach((project) -> {
+					DtoDonation donation = new DtoDonation();
+					donation.setIdDonor((int) (Math.random() * (cris.getId() - jony.getId())) + cris.getId());
+					donation.setIdProject(project.getId());
+					donation.setAmount((int) (project.getFactor()));
+					donation.setComment(jony.getNickname() + ": I donate to " + project.getName());
+					donorService.donate(donation);
+			});
+
+			for (int i = 0; i < 10; i++) {
+				int finalI = i;
+				projectRepository.findAll().forEach((project) -> {
+					if (finalI % 2 == 0) {
+						DtoDonation donation = new DtoDonation();
+						donation.setIdDonor((int) (Math.random() * (cris.getId() - jony.getId())) + cris.getId());
+						donation.setIdProject(project.getId());
+						donation.setAmount((int) (project.getFactor()));
+						donation.setComment(jony.getNickname() + ": I donate to " + project.getName());
+						donorService.donate(donation);
+					}
+				});
+			}
 		};
 
 	}
