@@ -9,9 +9,6 @@ public class ProjectBuilder {
 
 	private String name;
 	private double minPercentage;
-	private double percentage = 0;
-	private double collection = 0;
-	private boolean active = true;
 	private LocalDate initialDate;
 	private LocalDate endDate;
 	private Location location;
@@ -29,16 +26,6 @@ public class ProjectBuilder {
 
 	public ProjectBuilder whitMinPercentage(double minPercentage) {
 		this.minPercentage = minPercentage;
-		return this;
-	}
-
-	public ProjectBuilder whitCollection(double collection) {
-		this.collection = collection;
-		return this;
-	}
-
-	public ProjectBuilder withActive(boolean active) {
-		this.active = active;
 		return this;
 	}
 
