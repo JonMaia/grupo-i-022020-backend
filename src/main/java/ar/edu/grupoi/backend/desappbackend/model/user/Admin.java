@@ -3,11 +3,16 @@ package ar.edu.grupoi.backend.desappbackend.model.user;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.Entity;
+
 import ar.edu.grupoi.backend.desappbackend.model.project.Location;
 import ar.edu.grupoi.backend.desappbackend.model.project.Project;
 
+@Entity
 public class Admin extends User {
 
+	public Admin() {}
+	
 	public Admin(String name, String mail, String password) {
 		super(name, mail, password);
 	}

@@ -1,19 +1,35 @@
 package ar.edu.grupoi.backend.desappbackend.model.project;
 
 import java.time.LocalDate;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
+@Entity
 public class Project {
 
-	private final String name; // El nombre del proyecto es único en el sistema.
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+	@NotBlank(message = "Name is mandatory")
+	private String name;
+	@NotNull(message = "Min percentage is mandatory")
 	private double minPercentage;
 	private double percentage = 0;
 	private double collection = 0;
 	private boolean active = true;
-	private final LocalDate initialDate;
+	private LocalDate initialDate;
 	private LocalDate endDate;
-	private final Location location;
+	@OneToOne
+	private Location location;
 	private double factor;
 
+	public Project() {}
+	
 	public Project(String name, LocalDate endDate, Location location, Double minPercentage, Double factor) {
 		this.name          = name;
 		this.minPercentage = minPercentage != null && minPercentage >= 50 ? minPercentage : 50;
@@ -23,6 +39,8 @@ public class Project {
 		this.initialDate   = LocalDate.now();
 	}
 
+	public Integer getId() { return id; }
+	
 	public Location getLocation() { return location; }
 
 	public String getName() { return name; }

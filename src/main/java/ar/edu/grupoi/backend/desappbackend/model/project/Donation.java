@@ -2,11 +2,28 @@ package ar.edu.grupoi.backend.desappbackend.model.project;
 
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+@Entity
 public class Donation {
 	
-	private final LocalDate date;
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+	private LocalDate date;
+	@NotNull(message = "Amount is mandatory")
+	@Min(1)
 	private Integer amount;
+	@OneToOne
 	private Project project;
+	@NotBlank(message = "Nickname is mandatory")
 	private String nickname;
 	private Integer points;
 	private String comment;
@@ -20,6 +37,10 @@ public class Donation {
 		this.points = 0;
 	}
 
+	public Integer getId() {
+		return id;
+	}
+	
 	public LocalDate getDate() {
 		return date;
 	}
