@@ -17,8 +17,6 @@ public class DtoProject {
 	private boolean locationState;
 	private Integer cantDonations;
 	
-	public DtoProject() {}
-	
 	public Integer getIdAdmin() {
 		return idAdmin;
 	}

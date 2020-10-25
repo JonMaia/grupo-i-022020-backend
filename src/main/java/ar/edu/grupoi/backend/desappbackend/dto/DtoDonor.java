@@ -9,8 +9,6 @@ public class DtoDonor {
 	private String nickname;
 	private Integer points;
 
-	public DtoDonor() {}
-
 	public Integer getId() {
 		return id;
 	}

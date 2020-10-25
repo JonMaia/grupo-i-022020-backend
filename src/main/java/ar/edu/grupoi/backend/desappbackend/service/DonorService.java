@@ -29,7 +29,7 @@ public class DonorService {
 
 	public Donor create(Donor donor) throws ExistingUser {
 		Donor donorFind = donorRepository.findByMail(donor.getMail());
-		if (!(donorFind == null)) {
+		if (donorFind != null) {
 			throw new ExistingUser();
 		}
 		return donorRepository.save(donor);
