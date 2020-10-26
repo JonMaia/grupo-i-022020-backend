@@ -34,7 +34,7 @@ public class ProjectController {
 	
 	@CrossOrigin
 	@GetMapping("/{id}")
-	public DtoProject projectId(@PathVariable(value = "id") Integer id) {
+	public Project projectId(@PathVariable(value = "id") Integer id) {
 		return projectService.projectId(id);
 	}
 }

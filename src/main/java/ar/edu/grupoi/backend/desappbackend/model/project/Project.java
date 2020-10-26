@@ -27,6 +27,7 @@ public class Project {
 	@OneToOne
 	private Location location;
 	private double factor;
+	private int cantDonations;
 
 	public Project() {}
 	
@@ -52,6 +53,7 @@ public class Project {
 	public void updateCollection(double newCollection) {
 		collection += newCollection;
 		percentage += (newCollection * minPercentage) / moneyRequired();
+		cantDonations += 1;
 	}
 
 	public double moneyRequired() { return location.getPopulation() * factor; }
@@ -101,4 +103,13 @@ public class Project {
 	private double requeridPercentage() {
 		return (getCollection()*minPercentage) / moneyRequired();
 	}
+
+	public int getCantDonations() {
+		return cantDonations;
+	}
+
+	public void setCantDonations(int cantDonations) {
+		this.cantDonations = cantDonations;
+	}
+	
 }
