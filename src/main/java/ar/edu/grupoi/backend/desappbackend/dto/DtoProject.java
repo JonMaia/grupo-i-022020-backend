@@ -16,6 +16,7 @@ public class DtoProject {
 	private int locationPopulation;
 	private boolean locationState;
 	private Integer cantDonations;
+	private double collection;
 	
 	public Integer getIdAdmin() {
 		return idAdmin;
@@ -90,6 +91,12 @@ public class DtoProject {
 	
 	public Integer getCantDonations() {
 		return cantDonations;
+	}
+	public double getCollection() {
+		return collection;
+	}
+	public void setCollection(double collection) {
+		this.collection = collection;
 	}
 
 }

@@ -46,6 +46,7 @@ public class ProjectService {
 		dtoProject.setEndDate(project.getEndDate());
 		dtoProject.setMinPercentage(project.getMinPercentage());
 		dtoProject.setFactor(project.getFactor());
+		dtoProject.setCollection(project.getCollection());
 		dtoProject.setIdLocation(project.getLocation().getId());
 		dtoProject.setLocationName(project.getLocation().getName());
 		dtoProject.setLocationProvince(project.getLocation().getProvince());
