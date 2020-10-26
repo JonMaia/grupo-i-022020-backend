@@ -31,7 +31,7 @@ public interface ProjectRepository extends JpaRepository<Project, Integer> {
 
 	@Query(value = "SELECT COUNT(*) FROM project p "
 			+ "INNER JOIN donation d "
-			+ "ON d.project_id = ?1 ",
+			+ "ON d.project_id = p.id AND p.id = ?1",
 			nativeQuery = true)
 	Integer cantDonations(Integer id);
 }
