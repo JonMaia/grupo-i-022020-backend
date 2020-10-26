@@ -55,11 +55,11 @@ public class DonorService {
 		Donation donationId = donationRepository.save(donation);
 
 		project.updateCollection(dtoDonation.getAmount());
-		projectService.save(project);
+		Project projectSave = projectService.save(project);
 		
 		dtoDonation.setId(donationId.getId());
-		dtoDonation.setNameProject(project.getName());
-		dtoDonation.setPoints(donationId.getPoints());
+		dtoDonation.setProject(projectSave);
+		dtoDonation.setDonor(donor);
 		return dtoDonation;
 	}
 

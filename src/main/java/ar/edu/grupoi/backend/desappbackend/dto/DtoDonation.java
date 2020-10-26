@@ -4,6 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+import ar.edu.grupoi.backend.desappbackend.model.project.Project;
+import ar.edu.grupoi.backend.desappbackend.model.user.Donor;
 
 @Entity
 public class DtoDonation {
@@ -13,20 +17,14 @@ public class DtoDonation {
 	private Integer id;
 	private Integer idDonor;
 	private Integer idProject;
-	private String nameProject;
 	private Integer amount;
 	private String comment;
-	private Integer points;
+	@OneToOne
+	private Project project;
+	@OneToOne
+	private Donor donor;
 
 	public DtoDonation() {}
-
-	public DtoDonation(Integer idDonor, Integer idProject, String nameProject, Integer amount, String comment) {
-		this.idDonor = idDonor;
-		this.idProject = idProject;
-		this.nameProject = nameProject;
-		this.amount = amount;
-		this.comment = comment;
-	}
 
 	public Integer getId() {
 		return id;
@@ -52,14 +50,6 @@ public class DtoDonation {
 		this.idProject = idProject;
 	}
 
-	public String getNameProject() {
-		return nameProject;
-	}
-
-	public void setNameProject(String nameProject) {
-		this.nameProject = nameProject;
-	}
-
 	public Integer getAmount() {
 		return amount;
 	}
@@ -76,12 +66,22 @@ public class DtoDonation {
 		this.comment = comment;
 	}
 
-	public Integer getPoints() {
-		return points;
+	public Project getProject() {
+		return project;
 	}
 
-	public void setPoints(Integer points) {
-		this.points = points;
+	public void setProject(Project project) {
+		this.project = project;
+	}
+
+	public Donor getDonor() {
+		return donor;
+	}
+
+	public void setDonor(Donor donor) {
+		this.donor = donor;
 	};
+	
+	
 
 }
