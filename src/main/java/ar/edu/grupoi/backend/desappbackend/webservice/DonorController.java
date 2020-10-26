@@ -54,7 +54,7 @@ public class DonorController {
 	}
 
 	@CrossOrigin
-	@GetMapping("/points/{id}")
+	@GetMapping("/info/{id}")
 	public DtoDonor donorId(@PathVariable(value = "id") Integer id) {
 		return donorService.donorId(id);
 	}
