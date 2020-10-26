@@ -26,6 +26,13 @@ public class DtoDonation {
 
 	public DtoDonation() {}
 
+	public DtoDonation(Integer idDonor, Integer idProject, Integer amount, String comment) {
+		this.idDonor = idDonor;
+		this.idProject = idProject;
+		this.amount = amount;
+		this.comment = comment;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -80,8 +87,6 @@ public class DtoDonation {
 
 	public void setDonor(Donor donor) {
 		this.donor = donor;
-	};
-	
-	
+	}
 
 }
