@@ -65,8 +65,9 @@ public class ProjectTest {
 
     @Test
     void whenAProjectSetNewEndDate20201101ShouldUpdateEndDate() {
-        aProject.changeEndDate(LocalDate.of(2020, 11, 1));
-        assertEquals(aProject.getEndDate(), LocalDate.of(2020, 11, 1));
+    	LocalDate newDate = LocalDate.now().plusDays(1);
+        aProject.changeEndDate(newDate);
+        assertEquals(aProject.getEndDate(), newDate);
     }
 
     @Test

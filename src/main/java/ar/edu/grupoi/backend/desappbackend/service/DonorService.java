@@ -12,8 +12,8 @@ import ar.edu.grupoi.backend.desappbackend.model.project.Project;
 import ar.edu.grupoi.backend.desappbackend.model.user.Donor;
 import ar.edu.grupoi.backend.desappbackend.repositories.DonationRepository;
 import ar.edu.grupoi.backend.desappbackend.repositories.DonorRepository;
-import ar.edu.grupoi.backend.desappbackend.webservice.exception.ErrorLogin;
-import ar.edu.grupoi.backend.desappbackend.webservice.exception.ExistingUser;
+import ar.edu.grupoi.backend.desappbackend.service.exception.ErrorLogin;
+import ar.edu.grupoi.backend.desappbackend.service.exception.ExistingUser;
 
 @Service
 public class DonorService {

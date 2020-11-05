@@ -14,7 +14,7 @@ import ar.edu.grupoi.backend.desappbackend.dto.DtoProject;
 import ar.edu.grupoi.backend.desappbackend.model.project.Project;
 import ar.edu.grupoi.backend.desappbackend.model.user.Admin;
 import ar.edu.grupoi.backend.desappbackend.service.AdminService;
-import ar.edu.grupoi.backend.desappbackend.webservice.exception.ErrorLogin;
+import ar.edu.grupoi.backend.desappbackend.service.exception.ErrorLogin;
 
 import javax.validation.Valid;
 

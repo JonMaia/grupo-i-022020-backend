@@ -11,8 +11,8 @@ import ar.edu.grupoi.backend.desappbackend.dto.DtoDonation;
 import ar.edu.grupoi.backend.desappbackend.dto.DtoDonor;
 import ar.edu.grupoi.backend.desappbackend.model.user.Donor;
 import ar.edu.grupoi.backend.desappbackend.service.DonorService;
-import ar.edu.grupoi.backend.desappbackend.webservice.exception.ErrorLogin;
-import ar.edu.grupoi.backend.desappbackend.webservice.exception.ExistingUser;
+import ar.edu.grupoi.backend.desappbackend.service.exception.ErrorLogin;
+import ar.edu.grupoi.backend.desappbackend.service.exception.ExistingUser;
 
 import javax.validation.Valid;
 import java.util.HashMap;
