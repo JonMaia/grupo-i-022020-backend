@@ -34,7 +34,7 @@ public class DesappBackendApplication {
 		SpringApplication.run(DesappBackendApplication.class, args);
 	}
 
-	@Bean
+	/*@Bean
 	ApplicationRunner applicationRunner(AdminRepository adminRepository, DonorRepository donorRepository, LocationRepository locationRepository,
 			ProjectRepository projectRepository, DonorService donorService) {
 		return args -> {
@@ -108,5 +108,5 @@ public class DesappBackendApplication {
 			}
 		};
 
-	}
+	}*/
 }
