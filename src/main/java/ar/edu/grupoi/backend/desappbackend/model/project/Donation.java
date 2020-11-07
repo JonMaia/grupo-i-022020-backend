@@ -28,6 +28,8 @@ public class Donation {
 	private Integer points;
 	private String comment;
 	
+	public Donation() {}
+	
 	public Donation(LocalDate date, Integer amount, Project project, String nickname, String comment) {
 		this.date = date;
 		this.amount = amount;

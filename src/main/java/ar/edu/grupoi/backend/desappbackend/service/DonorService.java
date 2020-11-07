@@ -1,5 +1,6 @@
 package ar.edu.grupoi.backend.desappbackend.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +68,7 @@ public class DonorService {
 		Donor donor = donorRepository.findById(id).get();
 		Integer sum = donationRepository.sumPoints(donor.getNickname());
 		Integer bonus = donationRepository.bonusProjects(donor.getNickname()).size();
+		List<Donation> donations = donationRepository.findByNicknameDonor(donor.getNickname());
 
 		if (sum == null) {
 			sum = 0;
@@ -79,8 +81,28 @@ public class DonorService {
 		newDonor.setMail(donor.getMail());
 		newDonor.setPassword(donor.getPassword());
 		newDonor.setPoints(sum + bonus * 500);
+		
+		newDonor.setDtoDonations(processDonations(newDonor, donations));
 
 		return newDonor;
+	}
+
+	private List<DtoDonation> processDonations(DtoDonor newDonor, List<Donation> donations) {
+		List<DtoDonation> listDonations = new ArrayList<DtoDonation>();
+		
+		donations.forEach((donationAct) -> {
+			DtoDonation newDtoDonation = new DtoDonation();
+			newDtoDonation.setId(donationAct.getId());
+			newDtoDonation.setAmount(donationAct.getAmount());
+			newDtoDonation.setComment(donationAct.getComment());
+			newDtoDonation.setPoints(donationAct.getPoints());
+			newDtoDonation.setDate(donationAct.getDate());
+			newDtoDonation.setProjectName(donationAct.getNameProject());
+			
+			listDonations.add(newDtoDonation);
+		});
+		
+		return listDonations;
 	}
 
 	public List<Donor> findDonors(Integer idProject) {
