@@ -1,0 +1,4 @@
+2020-11-10 18:57:03 INFO  ServiceLogger:43 - Class: ar.edu.grupoi.backend.desappbackend.webservice.ProjectController@3849a328, Method: openProjects, Args: [], Time: 164ms
+2020-11-10 18:57:06 INFO  ServiceLogger:43 - Class: ar.edu.grupoi.backend.desappbackend.webservice.DonorController@51b51b0c, Method: login, Args: [ar.edu.grupoi.backend.desappbackend.dto.DtoDonor@22d29cbc], Time: 8ms
+2020-11-10 19:07:02 INFO  ServiceLogger:43 - Class: ar.edu.grupoi.backend.desappbackend.webservice.DonorController@4dfcf425, Method: login, Args: [Ljava.lang.Object;@7b8e9644, Time: 605ms
+2020-11-10 19:44:16 INFO  ServiceLogger:43 - Class: ar.edu.grupoi.backend.desappbackend.webservice.DonorController@3bb487d5, Method: login, Args: [ar.edu.grupoi.backend.desappbackend.dto.DtoDonor@62a39287], Time: 275ms
