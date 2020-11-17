@@ -13,15 +13,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
-				.authorizeRequests().antMatchers(HttpMethod.POST, "/crowdfunding/user/create").permitAll()
+		http.authorizeRequests().antMatchers(HttpMethod.POST, "/crowdfunding/user/create").permitAll()
 				.antMatchers(HttpMethod.POST, "/crowdfunding/user/login").permitAll()
-				
 				.antMatchers(HttpMethod.POST, "/backoffice/login").permitAll()
 				.antMatchers("/crowdfunding/project/open_projects").permitAll()
-				.antMatchers("/crowdfunding/project/next_finish").permitAll()
-				.anyRequest().authenticated()
-				.and().httpBasic();
+				.antMatchers("/crowdfunding/project/next_finish").permitAll().anyRequest().authenticated().and()
+				.httpBasic();
+		http.csrf().disable().addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
+		http.headers().frameOptions().disable();
 	}
 
 }
