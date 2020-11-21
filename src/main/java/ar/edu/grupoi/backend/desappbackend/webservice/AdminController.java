@@ -3,6 +3,7 @@ package ar.edu.grupoi.backend.desappbackend.webservice;
 import java.util.HashMap;
 import java.util.Map;
 
+import ar.edu.grupoi.backend.desappbackend.dto.DtoAdmin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +28,7 @@ public class AdminController {
 	
 	@CrossOrigin
 	@PostMapping("/login")
-	public ResponseEntity<Admin> login(@Valid @RequestBody Admin admin) throws ErrorLogin {
+	public ResponseEntity<Admin> login(@Valid @RequestBody DtoAdmin admin) throws ErrorLogin {
 		Admin adminLogin = adminService.login(admin.getMail(), admin.getPassword());
 		return new ResponseEntity<>(adminLogin, HttpStatus.OK);
 	}
