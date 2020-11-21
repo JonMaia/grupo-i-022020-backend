@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import ar.edu.grupoi.backend.desappbackend.model.user.Donor;
 
+@Repository
 public interface DonorRepository extends JpaRepository<Donor, Integer>{
 
 	Donor findByMail(String mail);

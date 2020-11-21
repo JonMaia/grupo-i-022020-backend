@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import ar.edu.grupoi.backend.desappbackend.DesappBackendApplicationTests;
 import ar.edu.grupoi.backend.desappbackend.model.user.Donor;
-import ar.edu.grupoi.backend.desappbackend.webservice.exception.ErrorLogin;
-import ar.edu.grupoi.backend.desappbackend.webservice.exception.ExistingUser;
+import ar.edu.grupoi.backend.desappbackend.service.exception.ErrorLogin;
+import ar.edu.grupoi.backend.desappbackend.service.exception.ExistingUser;
 
 public class DonorServiceTest extends DesappBackendApplicationTests {
 

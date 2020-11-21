@@ -1,8 +1,9 @@
-package ar.edu.grupoi.backend.desappbackend.webservice.exception;
+package ar.edu.grupoi.backend.desappbackend.service.exception;
 
 public class ErrorLogin extends Exception {
 
 	public ErrorLogin() {
 		super("Incorrect mail or password");
 	}
+
 }

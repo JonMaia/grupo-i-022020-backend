@@ -1,5 +1,7 @@
 package ar.edu.grupoi.backend.desappbackend.dto;
 
+import java.util.List;
+
 public class DtoDonor {
 
 	private Integer id;
@@ -8,6 +10,7 @@ public class DtoDonor {
 	private String password;
 	private String nickname;
 	private Integer points;
+	private List<DtoDonation> dtoDonations;
 
 	public Integer getId() {
 		return id;
@@ -55,6 +58,14 @@ public class DtoDonor {
 
 	public void setPoints(Integer points) {
 		this.points = points;
+	}
+
+	public void setDtoDonations(List<DtoDonation> dtoDonations) {
+		this.dtoDonations = dtoDonations;		
+	}
+
+	public List<DtoDonation> getDtoDonations() {
+		return dtoDonations;
 	}
 
 }

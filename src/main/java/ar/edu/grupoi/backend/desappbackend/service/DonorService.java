@@ -1,8 +1,13 @@
 package ar.edu.grupoi.backend.desappbackend.service;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.stereotype.Service;
 
 import ar.edu.grupoi.backend.desappbackend.dto.DtoDonation;
@@ -12,8 +17,10 @@ import ar.edu.grupoi.backend.desappbackend.model.project.Project;
 import ar.edu.grupoi.backend.desappbackend.model.user.Donor;
 import ar.edu.grupoi.backend.desappbackend.repositories.DonationRepository;
 import ar.edu.grupoi.backend.desappbackend.repositories.DonorRepository;
-import ar.edu.grupoi.backend.desappbackend.webservice.exception.ErrorLogin;
-import ar.edu.grupoi.backend.desappbackend.webservice.exception.ExistingUser;
+import ar.edu.grupoi.backend.desappbackend.service.exception.ErrorLogin;
+import ar.edu.grupoi.backend.desappbackend.service.exception.ExistingUser;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 
 @Service
 public class DonorService {
@@ -32,7 +39,29 @@ public class DonorService {
 		if (donorFind != null) {
 			throw new ExistingUser();
 		}
+		String token = getJWTToken(donor.getName());
+		donor.setToken(token);
 		return donorRepository.save(donor);
+	}
+
+	private String getJWTToken(String name) {
+		String secretKey = "mySecretKey";
+		List<GrantedAuthority> grantedAuthorities = AuthorityUtils
+				.commaSeparatedStringToAuthorityList("ROLE_USER");
+		
+		String token = Jwts
+				.builder()
+				.setSubject(name)
+				.claim("authorities",
+						grantedAuthorities.stream()
+								.map(GrantedAuthority::getAuthority)
+								.collect(Collectors.toList()))
+				.setIssuedAt(new Date(System.currentTimeMillis()))
+				.setExpiration(new Date(System.currentTimeMillis() + 600000))
+				.signWith(SignatureAlgorithm.HS512,
+						secretKey.getBytes()).compact();
+
+		return "Bearer " + token;
 	}
 
 	public Donor login(String mail, String password) throws ErrorLogin {
@@ -41,6 +70,10 @@ public class DonorService {
 			if (!(donorLogin.getPassword().equals(password))) {
 				throw new ErrorLogin();
 			}
+			
+			String token = getJWTToken(donorLogin.getName());
+			donorLogin.setToken(token);
+		
 			return donorLogin;
 		} catch (Exception e) {
 			throw new ErrorLogin();
@@ -67,6 +100,7 @@ public class DonorService {
 		Donor donor = donorRepository.findById(id).get();
 		Integer sum = donationRepository.sumPoints(donor.getNickname());
 		Integer bonus = donationRepository.bonusProjects(donor.getNickname()).size();
+		List<Donation> donations = donationRepository.findByNicknameDonor(donor.getNickname());
 
 		if (sum == null) {
 			sum = 0;
@@ -79,8 +113,28 @@ public class DonorService {
 		newDonor.setMail(donor.getMail());
 		newDonor.setPassword(donor.getPassword());
 		newDonor.setPoints(sum + bonus * 500);
+		
+		newDonor.setDtoDonations(processDonations(newDonor, donations));
 
 		return newDonor;
+	}
+
+	private List<DtoDonation> processDonations(DtoDonor newDonor, List<Donation> donations) {
+		List<DtoDonation> listDonations = new ArrayList<DtoDonation>();
+		
+		donations.forEach((donationAct) -> {
+			DtoDonation newDtoDonation = new DtoDonation();
+			newDtoDonation.setId(donationAct.getId());
+			newDtoDonation.setAmount(donationAct.getAmount());
+			newDtoDonation.setComment(donationAct.getComment());
+			newDtoDonation.setPoints(donationAct.getPoints());
+			newDtoDonation.setDate(donationAct.getDate());
+			newDtoDonation.setProjectName(donationAct.getNameProject());
+			
+			listDonations.add(newDtoDonation);
+		});
+		
+		return listDonations;
 	}
 
 	public List<Donor> findDonors(Integer idProject) {

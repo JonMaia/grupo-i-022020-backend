@@ -23,6 +23,8 @@ public abstract class User {
 	@NotBlank(message = "Password is mandatory")
 	@Size(min = 5, max = 8)
 	protected String password;
+	
+	protected String token;
 
 	public User() {}
 	
@@ -38,6 +40,9 @@ public abstract class User {
 	public void setMail(String mail) { this.mail = mail; };
 	public String getPassword() { return this.password; };
 	public void setPassword(String password) { this.password = password; }
-	public Integer getId() { return id; };
+	public Integer getId() { return id; }
+	public String getToken() { return token; }
+	public void setToken(String token) { this.token = token; };
+	
 	 	
 }
