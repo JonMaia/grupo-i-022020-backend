@@ -13,6 +13,7 @@ import ar.edu.grupoi.backend.desappbackend.model.user.Admin;
 import ar.edu.grupoi.backend.desappbackend.model.user.Donor;
 import ar.edu.grupoi.backend.desappbackend.repositories.AdminRepository;
 import ar.edu.grupoi.backend.desappbackend.service.exception.ErrorLogin;
+import ar.edu.grupoi.backend.desappbackend.service.exception.ErrorProjectFinished;
 
 @Service
 public class AdminService {
@@ -70,16 +71,20 @@ public class AdminService {
 		return newProject;
 	}
 
-	public Project finishCollection(DtoProject dtoProject) {
+	public Project finishCollection(DtoProject dtoProject) throws ErrorProjectFinished {
 		Admin admin = adminRepository.findById(dtoProject.getIdAdmin()).get();
 		Project projectId = projectService.findById(dtoProject.getIdProject());
 
-		admin.finishCollection(projectId);
-		Project project = projectService.save(projectId);
-
-		List<Donor> donors = donorService.findDonors(dtoProject.getIdProject());
-		emailService.notifyNews(donors, project);
-		return project;
+		if(projectId.compledCollection()) {
+			admin.finishCollection(projectId);
+			Project project = projectService.save(projectId);
+			
+			List<Donor> donors = donorService.findDonors(dtoProject.getIdProject());
+			emailService.notifyNews(donors, project);
+			return project;			
+		}else {
+			throw new ErrorProjectFinished();
+		}
 	}
 
 	public void top10Donations() {

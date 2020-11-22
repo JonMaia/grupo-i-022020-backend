@@ -16,6 +16,7 @@ import ar.edu.grupoi.backend.desappbackend.model.project.Project;
 import ar.edu.grupoi.backend.desappbackend.model.user.Admin;
 import ar.edu.grupoi.backend.desappbackend.service.AdminService;
 import ar.edu.grupoi.backend.desappbackend.service.exception.ErrorLogin;
+import ar.edu.grupoi.backend.desappbackend.service.exception.ErrorProjectFinished;
 
 import javax.validation.Valid;
 
@@ -41,8 +42,13 @@ public class AdminController {
 	
 	@CrossOrigin
 	@PutMapping("/finish_collection")
-	public Project finishCollection(@Valid @RequestBody DtoProject project) {
-		return adminService.finishCollection(project);
+	public ResponseEntity finishCollection(@Valid @RequestBody DtoProject project) {
+		try {
+			Project new_project = adminService.finishCollection(project);
+			return new ResponseEntity<>(new_project, HttpStatus.OK);
+		} catch (ErrorProjectFinished e) {
+			return ResponseEntity.status(500).body(e.getMessage());
+		}
 	}
 	
 	@CrossOrigin
