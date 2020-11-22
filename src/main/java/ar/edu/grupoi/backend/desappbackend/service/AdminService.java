@@ -31,6 +31,9 @@ public class AdminService {
 
 	@Autowired
 	private DonorService donorService;
+	
+	@Autowired
+	private JWTTokenService jWTTokenService;
 
 	public Admin login(String mail, String password) throws ErrorLogin {
 		try {
@@ -38,6 +41,8 @@ public class AdminService {
 			if (!(adminLogin.getPassword().equals(password))) {
 				throw new ErrorLogin();
 			}
+			String token = jWTTokenService.getJWTToken(adminLogin.getName());
+			adminLogin.setToken(token);
 			return adminLogin;
 		} catch (Exception e) {
 			throw new ErrorLogin();

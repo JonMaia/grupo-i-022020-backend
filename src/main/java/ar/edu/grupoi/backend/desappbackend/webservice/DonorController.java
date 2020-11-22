@@ -37,9 +37,7 @@ public class DonorController {
 			return ResponseEntity.status(500).body(e.getMessage());
 		}
 	}
-/*
-	cambiar todo los post requesbody por como esta acac
-	por el security*/
+
 	@PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity login(@Valid @RequestBody DtoDonor donor) {
 		try {
