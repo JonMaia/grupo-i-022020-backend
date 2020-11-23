@@ -34,7 +34,7 @@ public class DonorController {
 			Donor newDonor = donorService.create(donor);
 			return new ResponseEntity<>(newDonor, HttpStatus.OK);
 		} catch (ExistingUser e) {
-			return ResponseEntity.status(500).body(e.getMessage());
+			return ResponseEntity.status(400).body(e.getMessage());
 		}
 	}
 
@@ -44,7 +44,7 @@ public class DonorController {
 			Donor donorLogin = donorService.login(donor.getMail(), donor.getPassword());
 			return new ResponseEntity<>(donorLogin, HttpStatus.OK);
 		} catch (ErrorLogin e) {
-			return ResponseEntity.status(500).body(e.getMessage());
+			return ResponseEntity.status(400).body(e.getMessage());
 		}
 	}
 
