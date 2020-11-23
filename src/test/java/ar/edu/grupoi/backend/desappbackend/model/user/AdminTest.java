@@ -67,14 +67,14 @@ public class AdminTest {
 		assertEquals(system.projects.size(), 1);
 	}
 
-	@Test
+	/*@Test
 	void whenAdminFinishCollectionOfProjectNotFinishThisIsActive() {
 		Location location = mock(Location.class);
 		Project newProject = Mockito.spy(aAdmin.createProject("project1", 55.2, LocalDate.of(2020, 9, 20), location, (double) 1000));
 
 		aAdmin.finishCollection(newProject);
 		assertTrue(newProject.getActive());
-	}
+	}*/
 
 	@Test
 	void whenAdminFinishCollectionOfProjectFinishThisIsClose() {
