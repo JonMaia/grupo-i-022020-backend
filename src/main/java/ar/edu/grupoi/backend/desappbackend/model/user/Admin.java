@@ -18,9 +18,7 @@ public class Admin extends User {
 	}
 
 	public void finishCollection(Project project) {
-		if(project.compledCollection()) {
-			project.closedProject();
-		}
+		project.closedProject();
 	}
 	
 	public void notifyNews(Project project, List<Donor> donors) {

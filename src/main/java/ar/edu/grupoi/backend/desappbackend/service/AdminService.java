@@ -68,16 +68,12 @@ public class AdminService {
 		Admin admin = adminRepository.findById(dtoProject.getIdAdmin()).get();
 		Project projectId = projectService.findById(dtoProject.getIdProject());
 
-		if(projectId.compledCollection()) {
-			admin.finishCollection(projectId);
-			Project project = projectService.save(projectId);
+		admin.finishCollection(projectId);
+		Project project = projectService.save(projectId);
 			
-			List<Donor> donors = donorService.findDonors(dtoProject.getIdProject());
-			emailService.notifyNews(donors, project);
-			return project;			
-		}else {
-			throw new ErrorProjectFinished();
-		}
+		List<Donor> donors = donorService.findDonors(dtoProject.getIdProject());
+		emailService.notifyNews(donors, project);
+		return project;
 	}
 
 	public void top10Donations() {

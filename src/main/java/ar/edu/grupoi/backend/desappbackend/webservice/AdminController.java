@@ -47,7 +47,7 @@ public class AdminController {
 			Project new_project = adminService.finishCollection(project);
 			return new ResponseEntity<>(new_project, HttpStatus.OK);
 		} catch (ErrorProjectFinished e) {
-			return ResponseEntity.status(500).body(e.getMessage());
+			return ResponseEntity.status(400).body(e.getMessage());
 		}
 	}
 	
