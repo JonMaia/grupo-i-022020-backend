@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ar.edu.grupoi.backend.desappbackend.dto.DtoLocation;
 import ar.edu.grupoi.backend.desappbackend.model.project.Location;
 import ar.edu.grupoi.backend.desappbackend.service.LocationService;
 
@@ -21,7 +22,7 @@ public class LocationController {
 	
 	@CrossOrigin
 	@GetMapping("/findAll")
-	public List<Location> findAll() {
+	public List<DtoLocation> findAll() {
 		return locationService.findAll();
 	}
 	

@@ -52,19 +52,12 @@ public class AdminService {
 
 	public Project createProject(DtoProject dtoProject) {
 		Admin admin = adminRepository.findById(dtoProject.getIdAdmin()).get();
-
-		String locationName = dtoProject.getLocationName();
-		String province = dtoProject.getLocationProvince();
-		int population = dtoProject.getLocationPopulation();
-		boolean state = dtoProject.isLocationState();
-
+		Location location = locationService.findById(dtoProject.getIdLocation());
+	
 		String name = dtoProject.getName();
 		double minPercentage = dtoProject.getMinPercentage();
 		LocalDate endDate = dtoProject.getEndDate();
 		Double factor = dtoProject.getFactor();
-
-		Location newlocation = new Location(locationName, province, population, state);
-		Location location = locationService.save(newlocation);
 
 		Project project = admin.createProject(name, minPercentage, endDate, location, factor);
 		Project newProject = projectService.save(project);

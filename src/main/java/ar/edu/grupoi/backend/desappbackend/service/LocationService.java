@@ -1,10 +1,12 @@
 package ar.edu.grupoi.backend.desappbackend.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.edu.grupoi.backend.desappbackend.dto.DtoLocation;
 import ar.edu.grupoi.backend.desappbackend.model.project.Location;
 import ar.edu.grupoi.backend.desappbackend.repositories.LocationRepository;
 
@@ -18,8 +20,16 @@ public class LocationService {
 		return locationRepository.save(location);
 	}
 
-	public List<Location> findAll() {
-		return locationRepository.findAll();
+	public List<DtoLocation> findAll() {
+		List<Location> locations = locationRepository.findAll();
+		List<DtoLocation> dtoLocations = new ArrayList<DtoLocation>();
+		locations.forEach((location) -> {
+			DtoLocation dtoLocation = new DtoLocation();
+			dtoLocation.setId(location.getId());
+			dtoLocation.setName(location.getName());
+			dtoLocations.add(dtoLocation);
+		});
+		return dtoLocations;
 	}
 
 	public Location findById(Integer id) {
