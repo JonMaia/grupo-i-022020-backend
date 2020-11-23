@@ -40,24 +40,24 @@ VALUES
 (29, true, 0, 0, '2024-01-15', 9975, '2020-11-05', 53, 'Sarandi con Internet', 0, 6),
 (30, true, 0, 0, '2023-02-05', 2308, '2020-11-05', 87, 'Villa Dominico con Internet', 0, 7),
 (31, true, 0, 0, '2021-12-13', 2734, '2020-11-05', 88, 'Wilde con Internet', 0, 8),
-(32, true, 0, 0, '2021-11-30', 4478, '2020-11-05', 99, 'Don Bosco con Internet', 0, 9),
-(33, true, 1, 500000, '2021-11-25', 1171, '2020-11-05', 85, 'Bernal con Internet', 46.30783542195291, 10),
+(32, true, 0, 0, '2020-11-30', 4478, '2020-11-05', 99, 'Don Bosco con Internet', 0, 9),
+(33, true, 1, 500000, '2020-11-25', 1171, '2020-11-05', 85, 'Bernal con Internet', 46.30783542195291, 10),
 (34, true, 1, 100000, '2021-05-25', 7772, '2020-11-05', 63, 'Quilmes con Internet', 2.5856528280885622, 11),
 (35, true, 0, 0, '2024-09-19', 6939, '2020-11-05', 65, 'Solano con Internet', 0, 12),
 (36, true, 0, 0, '2023-04-16', 5428, '2020-11-05', 55, 'Berazategui con Internet', 0, 13),
-(37, true, 0, 0, '2021-11-30', 5850, '2020-11-05', 76, 'Varela con Internet', 0, 14),
-(38, true, 0, 0, '2021-11-26', 9504, '2020-11-05', 96, 'Dock Sud con Internet', 0, 15),
+(37, true, 0, 0, '2020-11-30', 5850, '2020-11-05', 76, 'Varela con Internet', 0, 14),
+(38, true, 0, 0, '2020-11-26', 9504, '2020-11-05', 96, 'Dock Sud con Internet', 0, 15),
 (39, true, 0, 0, '2024-03-05', 4529, '2020-11-05', 91, 'Banfield con Internet', 0, 16),
 (40, true, 0, 0, '2021-09-07', 5433, '2020-11-05', 99, 'Lanus con Internet', 0, 17),
 (41, true, 0, 0, '2024-03-06', 6903, '2020-11-05', 75, 'Lomas de Zamora con Internet', 0, 18),
 (42, true, 0, 0, '2021-09-22', 9962, '2020-11-05', 83, 'Adrogue con Internet', 0, 19),
-(43, true, 0, 0, '2021-11-25', 8407, '2020-11-05', 86, 'Alejando Korn con Internet', 0, 20),
+(43, true, 0, 0, '2020-11-25', 8407, '2020-11-05', 86, 'Alejando Korn con Internet', 0, 20),
 (44, true, 0, 0, '2024-09-03', 3211, '2020-11-05', 94, 'Bosques con Internet', 0, 21),
 (45, true, 0, 0, '2022-01-22', 9876, '2020-11-05', 90, 'Cañuelas con Internet', 0, 22),
 (46, true, 0, 0, '2022-10-03', 2124, '2020-11-05', 75, 'El Pato con Internet', 0, 23),
 (47, true, 0, 0, '2024-03-27', 253, '2020-11-05', 65, 'Ezpeleta con Internet', 0, 24),
 (48, true, 0, 0, '2021-02-16', 5968, '2020-11-05', 97, 'Temperley con Internet', 0, 25),
-(49, true, 0, 0, '2021-11-29', 2343, '2020-11-05', 65, 'Turdera con Internet', 0, 26);
+(49, true, 0, 0, '2020-11-29', 2343, '2020-11-05', 65, 'Turdera con Internet', 0, 26);
 
 INSERT INTO DONATION (ID, AMOUNT, COMMENT, DATE, NICKNAME, POINTS, PROJECT_ID)
 VALUES
