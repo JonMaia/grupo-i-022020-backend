@@ -25,7 +25,7 @@ public class DesappBackendApplication {
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		CorsConfiguration config = new CorsConfiguration();
 		config.setAllowCredentials(true);
-		config.setAllowedOrigins(Arrays.asList("https://grupo-i-022020-backend.herokuapp.com"));
+		config.setAllowedOrigins(Arrays.asList("https://grupo-i-022020-frontend.herokuapp.com"));
 		config.setAllowedMethods(Collections.singletonList("*"));
 		config.setAllowedHeaders(Collections.singletonList("*"));
 		source.registerCorsConfiguration("/**", config);
