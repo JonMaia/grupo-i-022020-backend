@@ -19,7 +19,8 @@ public interface LocationRepository extends JpaRepository<Location, Integer>{
 			+ "MONTH(d.date), "
 			+ "YEAR(d.date), "
 			+ "DAY(d.date) asc) pd "
-			+ "ON pd.lid = l.id ",
+			+ "ON pd.lid = l.id "
+			+ "FETCH FIRST 10 ROWS ONLY",
 			nativeQuery = true)
 	List<Location> top10();
 
