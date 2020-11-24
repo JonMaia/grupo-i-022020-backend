@@ -16,7 +16,6 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 @SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
-@EnableAsync
 @EnableScheduling
 public class DesappBackendApplication {
 

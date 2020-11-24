@@ -27,7 +27,6 @@ public class EmailService {
 		this.javaMailSender = javaMailSender;
 	}
 
-	@Async
 	public void notifyNews(List<Donor> donors, Project project) {
 		for (Donor donor : donors) {
 			sendNews(donor, project);
@@ -61,7 +60,6 @@ public class EmailService {
         }
 	}
 
-	@Async
 	public void sendTop10Projects(List<Project> projects, List<Donor> donors) {
 		String projectNames = this.findProjectNames(projects);
 		
@@ -103,7 +101,6 @@ public class EmailService {
         }
 	}
 
-	@Async
 	public void sendTop10Locations(List<Location> locations, List<Donor> donors) {
 		String locationsNames = this.findLocationNames(locations);
 		
