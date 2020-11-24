@@ -97,7 +97,7 @@ public class Project {
 	public double getPercentage() { return percentage; }
 
 	public boolean compledCollection() {
-		return requeridPercentage() >= getCumulativePercentage();
+		return requeridPercentage() <= getCumulativePercentage();
 	}
 
 	private double requeridPercentage() {
