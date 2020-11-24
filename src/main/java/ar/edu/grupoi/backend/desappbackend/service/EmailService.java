@@ -16,7 +16,7 @@ import ar.edu.grupoi.backend.desappbackend.model.project.Location;
 import ar.edu.grupoi.backend.desappbackend.model.project.Project;
 import ar.edu.grupoi.backend.desappbackend.model.user.Donor;
 
-@Transactional
+
 @Service
 public class EmailService {
 

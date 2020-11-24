@@ -36,7 +36,7 @@ public class ScheduledMail {
 	@Autowired
 	private DonorService donorService;
 	
-	@Transactional
+
 	@Scheduled(cron = "0 50 11 * * *")
 	public void sendDailyEmail() {
 //		adminService.top10Donations();
