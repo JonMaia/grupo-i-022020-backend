@@ -72,7 +72,7 @@ public class AdminService {
 		Project project = projectService.save(projectId);
 			
 		List<Donor> donors = donorService.findDonors(dtoProject.getIdProject());
-		emailService.notifyNews(donors, project);
+		//emailService.notifyNews(donors, project);
 		return project;
 	}
 
