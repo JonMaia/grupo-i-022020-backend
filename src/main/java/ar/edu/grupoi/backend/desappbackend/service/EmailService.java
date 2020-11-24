@@ -24,10 +24,6 @@ public class EmailService {
 	@Autowired
 	private JavaMailSender javaMailSender;
 
-	public EmailService(JavaMailSender javaMailSender) {
-		this.javaMailSender = javaMailSender;
-	}
-
 	@Async
 	public void notifyNews(List<Donor> donors, Project project) {
 		for (Donor donor : donors) {
