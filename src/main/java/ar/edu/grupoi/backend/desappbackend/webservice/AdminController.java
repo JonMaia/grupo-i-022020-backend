@@ -6,6 +6,7 @@ import java.util.Map;
 import ar.edu.grupoi.backend.desappbackend.dto.DtoAdmin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -41,7 +42,7 @@ public class AdminController {
 	}
 	
 	@CrossOrigin
-	@PutMapping("/finish_collection")
+	@PutMapping(value = "/finish_collection", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity finishCollection(@Valid @RequestBody DtoProject project) {
 		try {
 			Project new_project = adminService.finishCollection(project);
