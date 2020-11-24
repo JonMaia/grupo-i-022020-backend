@@ -28,7 +28,7 @@ public class DonorController {
 	@Autowired
 	private DonorService donorService;
 
-	@PostMapping("/create")
+	@PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity create(@Valid @RequestBody Donor donor) {
 		try {
 			Donor newDonor = donorService.create(donor);
