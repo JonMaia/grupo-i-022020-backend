@@ -4,15 +4,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @MappedSuperclass
+@SequenceGenerator(name="seq", initialValue=4, allocationSize=100)
 public abstract class User {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
 	protected Integer id;
 	@NotBlank(message = "Name is mandatory")
 	@Size(min = 5, max = 10)
