@@ -27,6 +27,7 @@ public class EmailService {
 		this.javaMailSender = javaMailSender;
 	}
 
+	@Async
 	public void notifyNews(List<Donor> donors, Project project) {
 		for (Donor donor : donors) {
 			sendNews(donor, project);
@@ -60,6 +61,7 @@ public class EmailService {
         }
 	}
 
+	@Async
 	public void sendTop10Projects(List<Project> projects, List<Donor> donors) {
 		String projectNames = this.findProjectNames(projects);
 		
@@ -76,11 +78,12 @@ public class EmailService {
 		return names.substring(0,names.length()-2);
 	}
 
-	private void senTop10ADonorProject(Donor donor, String projectNames) {
+	public void senTop10ADonorProject(Donor donor, String projectNames) {
 		MimeMessage mailMessage = javaMailSender.createMimeMessage();
         MimeMessageHelper helper;
         try {
             helper = new MimeMessageHelper(mailMessage, true);
+            helper.setFrom("crowdfundinggrupoi@gmail.com");
             helper.setTo(donor.getMail());
             helper.setSubject("Tops 10 Project");
             helper.setText(
@@ -101,6 +104,7 @@ public class EmailService {
         }
 	}
 
+	@Async
 	public void sendTop10Locations(List<Location> locations, List<Donor> donors) {
 		String locationsNames = this.findLocationNames(locations);
 		

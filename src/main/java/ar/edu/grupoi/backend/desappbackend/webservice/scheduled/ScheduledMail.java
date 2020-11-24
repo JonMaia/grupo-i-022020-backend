@@ -37,7 +37,7 @@ public class ScheduledMail {
 	private DonorService donorService;
 	
 	@Transactional
-	@Scheduled(cron = "0 25 11 * * *")
+	@Scheduled(cron = "0 50 11 * * *")
 	public void sendDailyEmail() {
 //		adminService.top10Donations();
 	//	adminService.top10Locations();
