@@ -146,4 +146,29 @@ public class EmailService {
 		return names.substring(0,names.length()-2);
 	}
 
+	public void sendTop10New() {
+		MimeMessage mailMessage = javaMailSender.createMimeMessage();
+        MimeMessageHelper helper;
+        try {
+            helper = new MimeMessageHelper(mailMessage, true);
+            helper.setTo("cris.esroj@gmail.com");
+            helper.setSubject("Tops 10 Localidades");
+            helper.setText(
+                    "<html>"
+                    + "<body>"
+                    + "<div>"
+                    + "<div> Dear " + "</div>"
+                    + "<div>We inform then top 10 of minus donated localities: </div>"
+                    + "<div><strong>"+ "</strong></div>"
+                    + "</div>"
+                    + "<div>The Team Admin.</div>"
+                    + "</body>"
+                    + "</html>", true);
+
+            javaMailSender.send(mailMessage);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+	}
+
 }
