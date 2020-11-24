@@ -53,15 +53,9 @@ public class AdminController {
 	}
 	
 	@CrossOrigin
-	@GetMapping("/top10_donations")
+	@GetMapping(value = "/top10_donations", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void top10() {
 		adminService.top10Donations();
-	}
-	
-	@CrossOrigin
-	@GetMapping("/top10")
-	public void top() {
-		adminService.top10New();
 	}
 	
 	@CrossOrigin

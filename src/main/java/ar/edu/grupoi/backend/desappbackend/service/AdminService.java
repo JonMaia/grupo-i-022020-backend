@@ -88,8 +88,4 @@ public class AdminService {
 		emailService.sendTop10Locations(locations, donors);
 	}
 
-	public void top10New() {
-		emailService.sendTop10New();
-	}
-
 }

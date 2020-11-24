@@ -6,7 +6,6 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
@@ -141,45 +140,6 @@ public class EmailService {
 			names += location.getName() +", ";
 		}
 		return names.substring(0,names.length()-2);
-	}
-
-	public void sendTop10New() {
-		/*MimeMessage mailMessage = javaMailSender.createMimeMessage();
-        MimeMessageHelper helper;
-        try {
-            helper = new MimeMessageHelper(mailMessage, true);
-            helper.setTo("cris.esroj@gmail.com");
-            helper.setSubject("Tops 10 Localidades");
-            helper.setText(
-                    "<html>"
-                    + "<body>"
-                    + "<div>"
-                    + "<div> Dear " + "</div>"
-                    + "<div>We inform then top 10 of minus donated localities: </div>"
-                    + "<div><strong>"+ "</strong></div>"
-                    + "</div>"
-                    + "<div>The Team Admin.</div>"
-                    + "</body>"
-                    + "</html>", true);
-
-            javaMailSender.send(mailMessage);
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        }*/
-		SimpleMailMessage msg = new SimpleMailMessage();
-		msg.setTo("cris.esroj@gmail.com");
-		msg.setSubject("Tops 10 Localidades");
-		msg.setText("<html>"
-                + "<body>"
-                + "<div>"
-                + "<div> Dear " + "</div>"
-                + "<div>We inform then top 10 of minus donated localities: </div>"
-                + "<div><strong>"+ "</strong></div>"
-                + "</div>"
-                + "<div>The Team Admin.</div>"
-                + "</body>"
-                + "</html>");
-		javaMailSender.send(msg);
 	}
 
 }
