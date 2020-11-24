@@ -15,7 +15,7 @@ public class ScheduledMail {
 	@Autowired
 	private AdminService adminService;
 
-	@Scheduled(fixedRate = 10000)
+	@Scheduled(cron = "0 35 14 * * *")
 	public void sendDailyEmail() {
 		adminService.top10Donations();
 		adminService.top10Locations();
