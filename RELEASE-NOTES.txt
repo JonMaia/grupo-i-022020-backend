@@ -1,4 +1,28 @@
 ====== RELEASE NOTE  ==========
+
+---------------------------------------------------------------------
+TAG Entrega 3.0
+---------------------------------------------------------------------
+NEW FEATURES:
+Backend:
+* Se implementó test de arquitectura.
+* Se implemento la auditoria.
+* Se implementó la autentificacion mediante un token (jwt).
+* Se implemento mensaje asincronicos para los envios de mail.
+* Se implemento scheduled para el envio de mails diarios.
+Frontend:
+* Paginacion en home.
+* Registrar usuario mediante google.
+* Detalle de donaciones de usuario.
+* Se agregaron los proyectos a finalizar en home.
+* Finalizar proyecto.
+
+NOTES:
+* Envios de mails mediante heroku no funcionan, pero si por localHost.
+
+KNOWN ISSUES:
+* 
+
 ---------------------------------------------------------------------
 TAG Entrega 2.0
 ---------------------------------------------------------------------
