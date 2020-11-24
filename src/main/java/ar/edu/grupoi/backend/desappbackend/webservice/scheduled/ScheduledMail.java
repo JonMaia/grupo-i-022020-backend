@@ -3,11 +3,13 @@ package ar.edu.grupoi.backend.desappbackend.webservice.scheduled;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.grupoi.backend.desappbackend.service.AdminService;
 
 @Component
+@Service
 public class ScheduledMail {
 	
 	@Autowired
