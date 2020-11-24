@@ -55,7 +55,7 @@ public class AdminController {
 	@CrossOrigin
 	@GetMapping("/top10_donations")
 	public void top10() {
-		adminService.top10Donations();
+		adminService.top10New();
 	}
 	
 	@CrossOrigin
