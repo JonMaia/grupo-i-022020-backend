@@ -12,7 +12,7 @@ public class ScheduledMail {
 	@Autowired
 	private AdminService adminService;
 	
-	@Scheduled(cron = "0 0 0 * * *")
+	@Scheduled(cron = "0 30 0 * * *")
 	public void sendDailyEmail() {
 		adminService.top10Donations();
 		adminService.top10Locations();
