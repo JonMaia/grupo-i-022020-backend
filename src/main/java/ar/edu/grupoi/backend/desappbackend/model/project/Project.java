@@ -97,11 +97,7 @@ public class Project {
 	public double getPercentage() { return percentage; }
 
 	public boolean compledCollection() {
-		return requeridPercentage() <= getCumulativePercentage();
-	}
-
-	private double requeridPercentage() {
-		return (getCollection()*minPercentage) / moneyRequired();
+		return getMinPercentage() <= getCumulativePercentage();
 	}
 
 	public int getCantDonations() {
